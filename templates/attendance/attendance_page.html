@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Attendance
+{% endblock %}
+{% block body %}
+    <h1>{{month}}</h1>
+    <br><br>
+    <div class="container">
+        <div class="jumbotron">
+            <table>
+                {% for items in days_list %}
+                <tr>
+                    <td>
+                        <p>{{items}}</p>                   
+                    </td>
+                    <td>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="month" value={{month}}>
+                            <input type="hidden" name="date" value={{items}}>
+                            <input type="submit" value={{items}}>
+                        </form>
+                    </td>
+
+                    <td>
+                        <p>test</p>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

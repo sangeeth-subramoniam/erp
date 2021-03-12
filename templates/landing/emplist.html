@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Emp List
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Emp List!!!</h1>
+<br><br>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <ol>
+                    {% for emp in emplist %}
+                        <a href=" {% url 'homepage:emp_detail' pk=emp.emp_no %}"><li>{{emp.first_name}}</li></a>
+                    {%endfor%}
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
