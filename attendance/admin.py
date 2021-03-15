@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Attendance
+from .models import Attendance_details
 # Register your models here.
 
-admin.site.register(Attendance)
+admin.site.register(Attendance_details)

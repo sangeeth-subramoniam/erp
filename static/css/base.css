@@ -6,3 +6,22 @@ table{
 td{
     padding: 15px;
 }
+
+.notification{
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+}
+
+.error{
+    color: red;
+}
+
+.attendance-check{
+    border: 2px solid black;
+    text-align : center;
+    padding-top: 10px;
+    padding-bottom: 42px;
+    height: 50px;
+    margin-bottom:60px;
+}

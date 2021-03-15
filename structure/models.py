@@ -20,7 +20,7 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(user_profile, on_delete=models.CASCADE, null=True, blank=True )
+    user_profile = models.ForeignKey(user_profile, on_delete=models.CASCADE, null=True, blank=True )
     emp_no = models.IntegerField( primary_key=True)
     birth_date = models.DateField()
     first_name = models.CharField(max_length=14)

@@ -1,35 +1,56 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}
 Attendance
 {% endblock %}
+
+{% block head %}
+{% endblock %}
+
 {% block body %}
-    <h1>{{month}}</h1>
-    <br><br>
-    <div class="container">
-        <div class="jumbotron">
-            <table>
-                {% for items in days_list %}
-                <tr>
-                    <td>
-                        <p>{{items}}</p>                   
-                    </td>
-                    <td>
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="month" value={{month}}>
-                            <input type="hidden" name="date" value={{items}}>
-                            <input type="submit" value={{items}}>
-                        </form>
-                    </td>
 
-                    <td>
-                        <p>test</p>
-                    </td>
+    
+    
+    <div class="jumbotron">
+        <h1>Hello {{emp}} </h1>
+        <br>
+    </div>
 
-                </tr>
-            {% endfor %}
-            </table>
+    <h3>
+        <div class="col-md-12 attendance-check">
+            <div class="row">
+                <div class="col-md-7">
+                    Please mark your attendance below: <br><br><br>
+                </div>
+                <div class="col-md-3">
+                    <button>Check Attendance</button>
+                </div>
+            </div>
         </div>
+    </h3>
+    <br><br><br><br>
+    <div class="jumbotron">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="user">User : </label>
+            <input type="text" name="user" value="{{emp}}" disabled>
+            <small>Cannot be edited!</small><br>
+        </div>
+        <div class="form-group">  
+            <label for="date">Date : </label>
+            <input type="date" name="date">
+        </div>
+        <div>
+        <input type="submit" value="Mark Attendance"><br>
+        {% if messages %}
+        {% for message in messages %}
+            <h4 class = "error">{{message}}</h4>
+            <br>
+        {% endfor %}
+    {% endif %}
+        </div>
+    </form>
     </div>
 {% endblock %}

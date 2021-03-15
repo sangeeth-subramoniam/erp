@@ -27,6 +27,7 @@ def signup(request):
 
             profile = user_profileform.save(commit=False)
             profile.user = user
+            profile.email = user.email
 
                     
             if 'profile_picture' in request.FILES:
