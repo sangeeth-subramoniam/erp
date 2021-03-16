@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'registration',
     'structure',
     'attendance',
+    'dashboard',
     'django_forms_bootstrap',
 ]
 

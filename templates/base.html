@@ -24,12 +24,11 @@
                 <li><a href=" {% url 'homepage:contact' %}"> <i class="fa fa-phone" aria-hidden="true"></i></i> contact</a></li>
                 <li><a href="{% url 'homepage:about' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> about</a></li>
 
-                
-                <li><a href="{% url 'homepage:emplist' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Employee List </a></li>
-            
+
 
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'attendance:attendance' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Attendance </a></li>
+                    <li><a href="{% url 'dashboard:home' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Dashboard </a></li>
                 {% endif %}
 
             </ul>

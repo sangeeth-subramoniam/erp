@@ -14,7 +14,7 @@ urlpatterns = [
     path('contact', views.contact , name = "contact"),
     path('about', views.about , name = "about"),
 
-    path('emplist', views.emplist , name = "emplist"),
+    # path('emplist', views.emplist , name = "emplist"),
     path('profile', views.profile , name = "profile"),
 
     path('updateprofile/<int:pk>', updateprofile.as_view(), name='updateprofile'),

@@ -28,12 +28,12 @@ def contact(request):
 def about(request):
     return render(request,'landing/about.html')
 
-def emplist(request):
-    employee = Employee.objects.all()
-    context = {'emplist':employee}
-    # for items in employee:
-    # print('wewrwer',employee.last_name)
-    return render(request, 'landing/emplist.html',context)
+# def emplist(request):
+#     employee = Employee.objects.all()
+#     context = {'emplist':employee}
+#     # for items in employee:
+#     # print('wewrwer',employee.last_name)
+#     return render(request, 'landing/emplist.html',context)
 
 def profile(request):
     curr_user = request.user

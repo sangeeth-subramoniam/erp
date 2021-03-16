@@ -24,4 +24,5 @@ urlpatterns = [
     path('register/', include('registration.urls') ),
     path('profiles/', include('structure.urls')),
     path('attendance/', include('attendance.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
