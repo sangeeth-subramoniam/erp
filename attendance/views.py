@@ -38,9 +38,9 @@ def attendance(request):
         else:
             value = Attendance_details.objects.get(employee__user_profile__email = curr_user.email)
             print('empt' , value.report)
-            print('check ' , str(val) , str(value.report).split())
-            if(val in str(value.report).split()):
-                print('val is ', val , 'list is ', str(value.report).split())
+            print('check ' , str(val) , str(value.report).split(','))
+            if(val in str(value.report).split(',')):
+                print('val is ', val , 'list is ', str(value.report).split((',')))
                 messages.error(request,'already entered')
                 return redirect('attendance:attendance')
             else:
@@ -71,12 +71,19 @@ def attendance(request):
 
 
 def check_attendance(request):
-
+    curr_user = request.user
     user_attendance = Attendance_details.objects.get(employee__user_profile__email = curr_user.email)
-    val = str(user_attendance.report).split()
-    for i in range(1,num_days+1):
+    attended = []
+    unattended = []
+    val = (user_attendance.report).split(',')
+    print(val)
+    tod = str(now.date())[-2:]
+    for i in range(1,int(tod)+1):
         if(str(i) in val):
-            print(i)
+            attended.append(i)
+        else:
+            unattended.append(i)
+    return render(request , 'attendance/check_attendance.html' , {'attended' : attended , 'unattended' : unattended})
 
 
 

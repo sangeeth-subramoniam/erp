@@ -25,3 +25,23 @@ td{
     height: 50px;
     margin-bottom:60px;
 }
+
+.attendance-history{
+    border: 3px solid black;
+    height : 350px;
+    padding : 10px;
+}
+
+.attendance-history-attended{
+    color:green
+}
+
+.attendance-history-unattended{
+    color: red;
+}
+
+.attendance-history-buttons{
+    padding : 8px;
+    margin: 4px;
+    border : 1px solid black;
+}

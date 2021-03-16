@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Check Attendance
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<h1>ATTENDANCE HISTORY</h1>
+
+<div class="container">
+    <h3>Your One month history of attendace records , </h3>
+</div>
+<br><br>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="jumbotron attendance-history attendance-history-attended">
+                <u><h2 style="color: black;">Attended : </h2></u>
+                <br>
+                {% for items in attended %}
+                    <button class = "btn btn-default attendance-history-buttons attendance-history-attended"> {{items}} </button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="jumbotron attendance-history attendance-history-unattended ">
+                <u><h2 style="color: black;">Un-Attended : </h2></u>
+                <br>
+                {% for items in unattended %}
+                    <button class= "attendance-history-buttons btn btn-default attendance-history-unattended"> {{items}} </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
