@@ -56,16 +56,20 @@ def attendance(request):
 
 
 
+    try:
 
-    curr_user = request.user
-    print('idhu ' ,curr_user)
-    print('hola hola , ' , curr_user.email)
-    print('hela hela ', Employee.user_profile)
+        curr_user = request.user
+        print('idhu ' ,curr_user)
+        print('hola hola , ' , curr_user.email)
+        print('hela hela ', Employee.user_profile)
 
-    emp = Employee.objects.get(user_profile__email = curr_user.email)
-    print(emp)
+        emp = Employee.objects.get(user_profile__email = curr_user.email)
+        print(emp)
 
-    return render(request,'attendance/attendance_page.html',{'emp' : emp})
+        return render(request,'attendance/attendance_page.html',{'emp' : emp})
+    
+    except:
+        return render(request,'error/errorpage.html',{'error' : 'Contact Admin to add your name to employee list'})
 
 
 

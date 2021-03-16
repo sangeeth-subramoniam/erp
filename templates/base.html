@@ -36,7 +36,7 @@
             
             {% if user.is_authenticated %}
             <ul class = "nav navbar-nav navbar-right">
-                <li><a href=""> <i class="fa fa-envelope" aria-hidden="true"></i> Welcome {{user.username}} </a></li>
+                <li><a href="{% url 'homepage:profile' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Welcome {{user.username}} </a></li>
                 <li style="padding-right: 20px;"><a href="{% url 'registration:signout' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> signout </a></li>
             {% else %}
                 <ul class = "nav navbar-nav navbar-right">

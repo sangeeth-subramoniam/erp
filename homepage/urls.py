@@ -10,4 +10,5 @@ urlpatterns = [
 
     path('emplist', views.emplist , name = "emplist"),
     path('emp_detail/<int:pk>', views.emp_detail , name = "emp_detail"),
+    path('profile', views.profile , name = "profile"),
 ]

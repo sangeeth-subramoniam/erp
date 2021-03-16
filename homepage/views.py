@@ -2,6 +2,7 @@ from django.shortcuts import render
 from registration.models import user_profile
 from structure.models import *
 
+from django.contrib.auth.decorators import login_required
 
 def get_or_none(model, **kwargs):
     try:
@@ -25,11 +26,19 @@ def about(request):
     return render(request,'landing/about.html')
 
 def emplist(request):
-    employee = Employee.objects.all()
-    context = {'emplist':employee}
-    # for items in employee:
-    # print('wewrwer',employee.last_name)
-    return render(request, 'landing/emplist.html',context)
+    try:
+        employee = Employee.objects.all()
+        context = {'emplist':employee}
+        # for items in employee:
+        # print('wewrwer',employee.last_name)
+        return render(request, 'landing/emplist.html',context)
+    except:
+        context = {
+            'error' : "Your application for employee is pending, please contact admin"
+        }
+        return render(request, 'error/errorpage.html',context)
+
+
 
 def emp_detail(request,pk):
     employee = Employee.objects.all().filter(emp_no = pk)
@@ -50,3 +59,8 @@ def emp_detail(request,pk):
     # for items in dept:
     #     print('sdkfjahskfj',dept.department)
     return render(request,'landing/emp_detail.html', {'emp_detail' : employee, 'dept' : dept, 'title' : title , 'manager_status' : manager_status})
+
+@login_required
+def profile(request):
+    return render(request,'landing/profile.html',{'uname':request.user})
+

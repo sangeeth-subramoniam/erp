@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Error !
+
+{% endblock %}
+
+{% block body %}
+
+<h1>oops Page error!!!</h1>
+<br><br>
+<div class="jumbotron">
+    {{error}}
+</div>
+
+{% endblock %}
