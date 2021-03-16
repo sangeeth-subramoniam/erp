@@ -2,7 +2,10 @@ from django.shortcuts import render
 from registration.models import user_profile
 from structure.models import *
 
-from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
+from .forms import userprofile_updateForm
+
 
 def get_or_none(model, **kwargs):
     try:
@@ -26,30 +29,33 @@ def about(request):
     return render(request,'landing/about.html')
 
 def emplist(request):
-    try:
-        employee = Employee.objects.all()
-        context = {'emplist':employee}
-        # for items in employee:
-        # print('wewrwer',employee.last_name)
-        return render(request, 'landing/emplist.html',context)
-    except:
-        context = {
-            'error' : "Your application for employee is pending, please contact admin"
-        }
-        return render(request, 'error/errorpage.html',context)
+    employee = Employee.objects.all()
+    context = {'emplist':employee}
+    # for items in employee:
+    # print('wewrwer',employee.last_name)
+    return render(request, 'landing/emplist.html',context)
 
-
-
-def emp_detail(request,pk):
-    employee = Employee.objects.all().filter(emp_no = pk)
+def profile(request):
+    curr_user = request.user
+    
+    employee = Employee.objects.get(user_profile__email = curr_user.email)
     # dept = DeptEmp.objects.all().filter(employee__emp_no = pk)
-    dept = DeptEmp.objects.get(employee__emp_no = pk)
+    dept = DeptEmp.objects.get(employee__user_profile__email = curr_user.email)
+    profilepicture = user_profile.objects.get(email=curr_user.email)
+    print('i am the profile pic ', profilepicture.profile_picture)
+    
 
-    title = Title.objects.get(employee__emp_no = pk)
+    try:
+        
+        title = Title.objects.get(employee__user_profile__email = curr_user.email)
+    
+    except:
+        title = "Employee"
 
-    # manager_status = DeptManager.objects.get(employee__emp_no = pk)
-    # print(manager_status)
-    manager_status = get_or_none(DeptManager,employee__emp_no = pk)
+
+# manager_status = DeptManager.objects.get(employee__emp_no = pk)
+# print(manager_status)
+    manager_status = get_or_none(DeptManager,employee__user_profile__email = curr_user.email)
     print(manager_status)
     
         
@@ -58,9 +64,12 @@ def emp_detail(request,pk):
     # print('alaya manasa',dept2.department.dept_no)
     # for items in dept:
     #     print('sdkfjahskfj',dept.department)
-    return render(request,'landing/emp_detail.html', {'emp_detail' : employee, 'dept' : dept, 'title' : title , 'manager_status' : manager_status})
+    return render(request,'landing/profile.html', {'emp' : employee, 'dept' : dept, 'title' : title , 'manager_status' : manager_status , 'pp':profilepicture})
+    # except:
+    #     error = "UnAppropritae User"
+    #     return render(request,'error/errorpage.html', {'error' : error})
 
-@login_required
-def profile(request):
-    return render(request,'landing/profile.html',{'uname':request.user})
-
+    
+class updateprofile(UpdateView):
+    model = user_profile
+    form_class = userprofile_updateForm

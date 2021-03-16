@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+User_profile_update
+
+{% endblock %}
+
+{% block body %}
+        <h3>Please Update</h3>
+            <div class="jumbotron">
+                <!-- user the enctype attribute because we are uploading images  -->
+                <form enctype="multipart/form-data" method="POST">
+                    <div class="container sign-form">
+                        {% csrf_token %}
+                        
+                        {{ form |as_bootstrap  }}
+                    
+                        <!-- {{ user_profileform.as_p }} -->
+                        <input type="submit" class = “btn btn-default” name="submit" value="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+{% endblock %}

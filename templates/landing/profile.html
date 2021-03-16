@@ -4,13 +4,77 @@
 
 {% block title %}
 
-Profile
+Emp List
 
 {% endblock %}
 
 {% block body %}
+<h1>{{emp}}</h1>
+<br><br>
+<div class="jumbotron">
+    <img class="profile-picture" src="media/{{pp.profile_picture}}">
+</div>
+<div>
+    <a href=" {% url 'homepage:updateprofile' pk=pp.id %} "><button class = "btn btn-warning profilebutton">Edit</button></a>
+</div>
+<br><br>
+<div class="container">
+    <h3>PERSONAL : </h3>
+    <div class="jumbotron">
+        <ul>
+            <li>id is {{emp.emp_no}}</li>
+            <li>Name : {{emp.first_name}} {{emp.last_name}} </li>
+            <li>DOB : {{emp.birth_date}} </li>
+            <li>SEX : {{emp.gender}}</li>
+            <li>Address : {{emp.address}}</li>
+            <li>Date of Joining : {{emp.hire_date}}</li>
+        </ul>
+    </div>
+    <a href="{% url 'structure:EmployeeUpdate' pk=emp.emp_no %}">
+        <button class="btn btn-warning"> Edit </button>
+    </a>
+</div>
 
-<h1>Hi {{uname}}</h1>
+<br><br>
 
+<div class="container">
+    <h3>DEPT : </h3>
+    <div class="jumbotron">
+        <b>DEPT :  </b>{{ dept.department }}
+    </div>
+<a href="{% url 'structure:DeptEmpUpdate' pk=dept.id %}">
+    <button class="btn btn-warning"> Edit </button>
+</a>
+</div>
+
+<br><br>
+
+<div class="container">
+    <h3>Role/Title : </h3>
+    <div class="jumbotron">
+        <b>Role/Title :  </b>{{ title.title }}
+    </div>
+<a href="">
+    <button class="btn btn-warning" disabled>Cannot Edit </button>
+</a>
+</div>
+
+<br><br>
+
+<div class="container">
+    <h3>Manager Status : </h3>
+    <div class="jumbotron">
+        {%if not manager_status%}
+        <b>Manager Status :  </b> NONE
+        {% else %}
+            <b>Manager Status :  </b>{{ manager_status.department }}
+        {% endif %}
+    </div>
+<a href="">
+    <button class="btn btn-warning" disabled>Cannot Edit </button>
+</a>
+</div>
+
+<br><br>
 
 {% endblock %}

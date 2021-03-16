@@ -18,7 +18,7 @@ Emp List
             <div class="jumbotron">
                 <ol>
                     {% for emp in emplist %}
-                        <a href=" {% url 'homepage:emp_detail' pk=emp.emp_no %}"><li>{{emp}}</li></a>
+                        <a href=" {% url 'homepage:profile' %}"><li>{{emp}}</li></a>
                     {%endfor%}
                 </ol>
             </div>
