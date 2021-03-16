@@ -45,3 +45,14 @@ td{
     margin: 4px;
     border : 1px solid black;
 }
+
+.home-video{
+    border: 2px solid black;
+    padding:10px;
+    margin: 10px;
+}
+
+.home-video-video{
+    border: 3px solid black;
+    margin: 1px;
+}
