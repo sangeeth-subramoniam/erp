@@ -34,7 +34,20 @@ Dashboard
 <br><br>
     {% for message in messages %}
         <div class="jumbotron">
-            <p><b>{{message.sender}}</b> : {{message.message}}</p> <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
+            <div>
+                <p><b>{{message.sender}}</b> : {{message.message}}</p>
+                <br><br>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{message.created_at}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
