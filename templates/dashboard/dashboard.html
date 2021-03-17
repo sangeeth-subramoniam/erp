@@ -10,11 +10,31 @@ Dashboard
 
 {% block body %}
 
-<h1>Dashboard</h1>
+<h1> <u>Dashboard</u></h1> <br>
+
+<form style="border: 2px solid black; padding : 8px" method=POST>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="sender"> Profile :</label>
+        <input type="text" class="form-control" name="sender" value={{curr_user}} disabled>
+        
+        <br><br>
+        
+        <label for="message"> Message : </label>
+        <textarea class="form-control" name="message" rows="3"></textarea>
+        
+        <br><br>
+        
+        <input type="submit" class="btn btn-primary" value="Send">
+    </div>
+</form>
+
+
+
 <br><br>
     {% for message in messages %}
         <div class="jumbotron">
-            <p><b>{{message.sender}}</b> : {{message.message}}</p>
+            <p><b>{{message.sender}}</b> : {{message.message}}</p> <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
         </div>
     {% endfor %}
 {% endblock %}

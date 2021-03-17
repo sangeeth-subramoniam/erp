@@ -7,5 +7,6 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', views.home , name = "home"),
+    path('delete/<int:pk>', views.delete , name = "delete"),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
