@@ -18,11 +18,17 @@ def home(request):
         message_content = request.POST['message']
         print('message content is ', message_content)
         sender = curr_user
+        important = request.POST.get('important')
+        if(important == "on"):
+            important = True
+        else:
+            important = False
+        
 
         # reciever = Employee.objects.get(user_profile__email = current_user.email)
         
 
-        Message.objects.create(user = curr_user, user_profile = up , employee = emp , message = message_content , sender = emp , reciever = None)
+        Message.objects.create(user = curr_user, user_profile = up , employee = emp , message = message_content , sender = emp , reciever = None, important=important) 
         print('Message object created !')
         
         return redirect('dashboard:home')
@@ -31,7 +37,7 @@ def home(request):
 
 
     curr_user = request.user
-    messages = Message.objects.all()
+    messages = Message.objects.all().order_by('-created_at')
     return render(request,'dashboard/dashboard.html', {'messages': messages, 'curr_user' : curr_user})
 
 
@@ -42,3 +48,5 @@ def delete(request,pk):
     message.delete()
     print('message deleted ')
     return redirect('dashboard:home')
+
+    

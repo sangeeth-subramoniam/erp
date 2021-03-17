@@ -14,6 +14,8 @@ class Message(models.Model):
     reciever = models.ForeignKey(Employee, on_delete=models.CASCADE , related_name= "emp_reciever" , blank=True , null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    important = models.BooleanField(blank = True, null=True)
+
 
     def __str__(self):
         name = str(self.sender) +' ' +  str(self.message)[0:10]
