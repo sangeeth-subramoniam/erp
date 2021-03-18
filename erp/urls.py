@@ -25,4 +25,5 @@ urlpatterns = [
     path('profiles/', include('structure.urls')),
     path('attendance/', include('attendance.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('message/', include('messaging.urls')),
 ]

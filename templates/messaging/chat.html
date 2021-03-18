@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Messaging-Chat
+
+{% endblock %}
+
+{% block body %}
+
+<h1> <u> Messaging-Chat </u> </h1>
+    <p>[ Personla messages goes here. Make sure to be polite and responsible ]</p>
+
+    {% for items in sender_msg %}
+        {{items.message}}
+    {% endfor %}
+    
+
+{% endblock %}

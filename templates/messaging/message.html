@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Messaging
+
+{% endblock %}
+
+{% block body %}
+
+<h1> <u> Messaging  </u> </h1>
+    <p>[ Communicate withtin the organisation. Make sure to be polite and responsible ]</p>
+
+    <br>
+    <div class="container">
+        <h2>My Messages :</h2>
+        {% for message in sender_list %}
+        
+
+        <div class="jumbotron">
+
+            <div class="col-md-12">
+                <div class="row">
+
+
+                    <div class="col-md-12">
+                        <a href="{% url 'messaging:chat' pk=message.emp_no %} "><b>{{message}}</b></a>
+                    </div>
+
+
+                </div>
+            </div>
+            
+        </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

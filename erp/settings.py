@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'attendance',
     'dashboard',
     'django_forms_bootstrap',
+    'messaging',
 ]
 
 MIDDLEWARE = [
