@@ -21,4 +21,7 @@ urlpatterns = [
 
     path('updateprofile/<int:pk>', updateprofile.as_view(), name='updateprofile'),
 
+    path('upcoming_modules', views.upcoming_modules , name = "upcoming_modules"),
+    
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,18 +10,16 @@ Attendance
 
 {% block body %}
 
-    
-    
-    <div class="jumbotron">
-        <h1>Hello {{emp}} </h1>
-        <br>
-    </div>
+    <h1> <u> Attendance </u> </h1>
+    <p>[ Mark Attendance below. For any date other than today raise a ticket to the admin with the list of days to be marked ]</p>
+
+    <br><br>    
 
     <h3>
         <div class="col-md-12 attendance-check">
             <div class="row">
                 <div class="col-md-7">
-                    Please mark your attendance below: <br><br><br>
+                    Please mark your attendance below:
                 </div>
                 <div class="col-md-3">
                     <a href=" {% url 'attendance:check_attendance' %}" ><button>Check Attendance</button></a>
@@ -29,14 +27,14 @@ Attendance
             </div>
         </div>
     </h3>
-    <br><br><br><br>
+    <br><br><br><br><br><br>
     <div class="jumbotron">
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
             <label for="user">User : </label>
             <input type="text" name="user" value="{{emp}}" disabled>
-            <small>Cannot be edited!</small><br>
+            <small style="color:red;">Cannot be edited!</small><br>
         </div>
         <div class="form-group">  
             <label for="date">Date : </label>

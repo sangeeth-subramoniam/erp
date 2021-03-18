@@ -16,20 +16,24 @@
     <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">会社XXXXXX会社</a>
+                <a class="navbar-brand" href="/">SAN会社CHAN</a>
             </div>
             <ul class="nav navbar-nav">
                 <!-- using dynamic urls .... don't forget to add app_name = 'homepage' etc to each of the urls.py -->
                 <li> <a href="/"> <i class="fa fa-home" aria-hidden="true"> </i>  Home</a> </li>
-                <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-phone" aria-hidden="true"></i></i> Tickets</a></li>
+                
                 <li><a href="{% url 'homepage:about' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> about</a></li>
+                
 
 
 
                 {% if user.is_authenticated %}
+                    <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-phone" aria-hidden="true"></i></i> Tickets</a></li>
                     <li><a href="{% url 'attendance:attendance' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Attendance </a></li>
                     <li><a href="{% url 'dashboard:home' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Dashboard </a></li>
                 {% endif %}
+
+                <li><a href="{% url 'homepage:upcoming_modules' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> upcoming_modules</a></li>
 
             </ul>
             
@@ -42,6 +46,8 @@
                     <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signup</a></li>
                     <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signin</a></li>
             {% endif %}
+
+            
 
             
         </div>

@@ -117,3 +117,9 @@ def ticket_status(request,pk1,pk2):
 
     return redirect('homepage:tickets')
 
+
+    
+
+def upcoming_modules(request):
+    return render(request,'landing/upcoming_modules.html')
+
