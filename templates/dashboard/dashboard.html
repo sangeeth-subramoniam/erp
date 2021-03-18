@@ -65,7 +65,12 @@ Dashboard
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
+                            {% if message.user == curr_user %}
+                                <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
+                            {% else %}
+                                <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning" disabled>Delete</button></a>
+                            {% endif %}
+
                         </div>
                         <div class="col-md-6">
                             <p>{{message.created_at}}</p>
