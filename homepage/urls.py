@@ -11,7 +11,9 @@ app_name = 'homepage'
 
 urlpatterns = [
     path('', views.home , name = "home"),
-    path('contact', views.contact , name = "contact"),
+    path('tickets', views.tickets , name = "tickets"),
+    path('tickets/status/<int:pk1>/<int:pk2>', views.ticket_status , name = "ticket_status"),
+
     path('about', views.about , name = "about"),
 
     # path('emplist', views.emplist , name = "emplist"),

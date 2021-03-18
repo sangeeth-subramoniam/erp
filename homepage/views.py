@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from registration.models import user_profile
 from structure.models import *
+
+from django.contrib.auth.models import User
 
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .forms import userprofile_updateForm
 
+from .models import Tickets
+
+from django.db.models import Q
 
 def get_or_none(model, **kwargs):
     try:
@@ -73,3 +78,42 @@ def profile(request):
 class updateprofile(UpdateView):
     model = user_profile
     form_class = userprofile_updateForm
+
+
+def tickets(request):
+
+    
+    if request.method == "POST":
+
+        admin = Employee.objects.get(emp_no = 0)
+
+        employee_ticket = Employee.objects.get(user_profile__email = request.user.email)
+
+        ticket = request.POST.get('ticket')
+
+        sendto = request.POST.get('reciever')
+        print(sendto)
+        sendto = admin
+        print('sendto 2' , sendto)
+
+        new_ticket = Tickets.objects.create(employee=employee_ticket, query=ticket , sender = employee_ticket , reciever= sendto)
+
+        return redirect('homepage:tickets')
+    
+    
+    
+    current_user = request.user
+    admin = Employee.objects.get(emp_no = 0)
+    ticket = Tickets.objects.all().filter(~Q(status=3)).filter(employee__user_profile__email = current_user.email).order_by('-created_at')
+    print(ticket)
+
+    return render(request,'landing/tickets.html', {'tickets' : ticket , 'curr_user' : current_user , 'admin':admin})
+
+def ticket_status(request,pk1,pk2):
+    tick = Tickets.objects.get(id = pk1)
+    print('value before update' , tick.status)
+    tick_upd = Tickets.objects.filter(id=pk1).update(status=pk2)
+    print('value after update' , tick.status)
+
+    return redirect('homepage:tickets')
+

@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Message
 
+from django.contrib import messages
+
 from structure.models import Employee
 
 from registration.models import user_profile
@@ -50,8 +52,17 @@ def delete(request,pk):
 
     message = Message.objects.get(id = pk)
     print(message)
-    message.delete()
-    print('message deleted ')
+    if(message.employee.user_profile.user == request.user) : 
+
+        message.delete()
+        print('message deleted')
+    
+    else:
+        messages.error(request,'You cannot delete others post')
+
     return redirect('dashboard:home')
+
+
+    # message for deleting others @post pending
 
     

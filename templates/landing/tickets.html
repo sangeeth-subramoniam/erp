@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Contact
+{% endblock %}
+{% block body %}
+    <h1> <u> My Tickets </u> </h1>
+
+    <br><br>
+
+    <form style="border: 2px solid black; padding:10px;" method="POST">
+        {% csrf_token %}
+        
+        <label for="ticket">Enter the Ticket : </label>
+        <input type="text" name="ticket">
+
+        <br><br>
+
+        <label for="reciever"> Send to :</label>
+        <input type="text" name="reciever" value= "Admin" disabled >
+        
+        <br><br><br>
+
+        <input type="submit" class="btn btn-warning "  value="Raise Ticket">
+
+
+    </form>
+
+    <br><br>
+
+
+
+
+    <ol>
+    {% for ticket in tickets %}
+    <div>
+
+        
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1> <li> {{ticket}} </li> </h1>
+                        <b>{{ticket.created_at}}</b><br><br>
+                    </div>
+
+                    
+                    <div class="col-md-2">
+                        {% if ticket.status == 0 %}
+                        <a href="{% url 'homepage:ticket_status' pk1=ticket.id pk2=1 %}"><button class="btn btn-warning"> Pending </button> </a>
+                        {% endif %}
+
+                        {% if ticket.status == 1 %}
+                        <a href=" {% url 'homepage:ticket_status' pk1=ticket.id pk2=0 %}"><button class="btn btn-success"> Completed </button></a> 
+                        {% endif %}
+
+                    </div>
+                    
+                    
+                    <div class="col-md-2">
+                        <a href=" {% url 'homepage:ticket_status' pk1=ticket.id pk2=3 %}"><button class="btn btn-danger"> Delete </button> </a>
+                    </div>
+
+                </div>
+            </div>
+            
+        
+    </div>
+    {% endfor %}
+    </ol>
+
+    
+    
+{% endblock %}
