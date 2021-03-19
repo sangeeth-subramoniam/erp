@@ -12,7 +12,7 @@ def home(request):
 
     # messages = Messaging.objects.all().order_by('-created_at')
     # my_messages = Messaging.objects.all().filter(reciever__user_profile__user__id = request.user.id).values('sender').distinct()
-    my_messages = Messaging.objects.all().filter(reciever__user_profile__user__id = request.user.id).order_by('sender')
+    my_messages = Messaging.objects.all().filter(reciever__user_profile__user__id = request.user.id).order_by('-created_at')
     # for messages in my_messages:
     #     print(messages.sender)
 
