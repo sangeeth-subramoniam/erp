@@ -76,13 +76,13 @@ td{
 .chat-jumbotron-left {
     padding : 20px;
     margin-left: 0px;
-    max-width: 60%;
+    max-width: 100%;
 }
 
 .chat-jumbotron-right {
     padding : 20px;
     margin-left: 60%;
-    max-width: 60%;
+    max-width: 80%;
 }
 
 .msg-div{

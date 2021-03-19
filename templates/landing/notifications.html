@@ -9,20 +9,18 @@ About
     <h1 style = "text-align: center;"> <u> Notifications </u> </h1>
     <br>
     <div class="container">
-        <div class="jumbotron">
-            <h1>Notifications</h1>
-        </div>
+        
             {% for notification in notifications %}
             
             <div class="jumbotron">
-                <h3>
+                <h2>
 
-                    {{notification.notification_title}}
+                    <u>{{notification.notification_title}}</u>
                     
-                </h3>
+                </h2>
 
                 <p>
-                    {{notification.notification_title}}
+                    {{notification.notification_desc}}
                 </p>
 
             </div>
