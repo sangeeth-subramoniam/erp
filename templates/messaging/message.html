@@ -22,10 +22,16 @@ Messaging
             <form method = "POST"> {% csrf_token %}<h2><input type="text" name="employee_search" placeholder="Seach for Employee" required> 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-1">
 
-            <h2><input class="btn btn-default" type="submit" placeholder="Submit"></h2></form>
+            <h2><input class="btn btn-default" type="submit" placeholder="Submit"></h2> </form>
         </div>
+
+        <div class="col-md-3">
+
+            <h2 style="font-size: medium; padding-top : 10px;"> Search "all" for Overall Employee </p> </h2>
+        </div>
+
     </div>
 
         {% for message in sender_list %}

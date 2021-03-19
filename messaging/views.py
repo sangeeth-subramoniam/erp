@@ -12,8 +12,13 @@ def home(request):
     if request.method == 'POST':
 
         name = request.POST.get('employee_search')
+        
+        if(name == "all"):
+            employees = Employee.objects.all().exclude(user_profile__email = request.user.email)
+    
 
-        employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+        else:
+            employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
         context = {
             'employees' : employees
