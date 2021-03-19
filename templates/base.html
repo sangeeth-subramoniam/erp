@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- for fixed top .navbar-fixed-top -->
-    <nav class="navbar navbar-inverse ">
+    <nav class="navbar navbar-inverse " style=" margin-bottom:0px ; border-bottom : 0px;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">SAN会社CHAN</a>
@@ -47,15 +47,11 @@
                     <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signup</a></li>
                     <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signin</a></li>
             {% endif %}
-
-            
-
-            
         </div>
     </nav>
     <!-- putting the block bdy in div so that the whole templates have aligned justified effect -->
 
-    <div class="container">
+    <div class="container base-container" style=" padding:0px ;">
         {% block body %}
         
 

@@ -71,3 +71,33 @@ td{
     margin-right: 45%;
 }
 
+
+.chat-jumbotron-left {
+    padding : 20px;
+    margin-left: 10%;
+    max-width: 60%;
+}
+
+.chat-jumbotron-right {
+    padding : 20px;
+    margin-left: 60%;
+    max-width: 60%;
+}
+
+.msg-div{
+    width: 100%; 
+    height: 336px; 
+    overflow: auto; 
+    text-align:justify; 
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.message-input-bottom{
+    height:30px;
+    margin: 0;
+    clear: both;
+    width:100%;
+    position: relative;
+}
+

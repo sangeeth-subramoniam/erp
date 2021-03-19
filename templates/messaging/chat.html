@@ -10,12 +10,50 @@ Messaging-Chat
 
 {% block body %}
 
-<h1> <u> Messaging-Chat </u> </h1>
-    <p>[ Personla messages goes here. Make sure to be polite and responsible ]</p>
+<h1  style="text-align: center; padding:0px ;"> <u> Personal-Chat </u> </h1>
+    <p style="text-align: center;  padding:0px ;">[ Welcome to Personal chat! Remember to guard your privacy and abide by our Company guidelines.]</p> <br>
 
-    {% for items in sender_msg %}
-        {{items.message}}
+    <div class="container msg-div">
+    {% for items in msg_list %}
+        
+
+            
+            {% if items.sender == curr_user_employee %}
+
+                <div class="jumbotron chat-jumbotron-right">
+                    <p> <u> {{items.sender}}  </u> </p>
+                    <p> {{items.message}} </p>
+                    <b> {{items.created_at}} </b>
+                </div>
+            
+            {% else %}
+
+                <div class="jumbotron chat-jumbotron-left">
+                    <p> {{items.sender}} : </p>
+                    <p>{{items.message}}</p>
+                    <b>{{items.created_at}}</b>
+                </div>
+
+            {% endif %}
+
     {% endfor %}
+</div>
+
+<div class="container message-input-bottom" >
+    <form style="padding : 8px" method=POST>
+        {% csrf_token %}
+        <div class="form-group">
+            
+            <label for="message"> Message : </label>
+            <textarea class="form-control" name="message" rows="1"></textarea>
+            
+            <label for="important"> Important : </label>
+            <input type="checkbox" name="important"><br>
+            
+            <input type="submit" class="btn btn-primary" value="Send">
+        </div>
+    </form>
+</div>
     
 
 {% endblock %}
