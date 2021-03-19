@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .forms import userprofile_updateForm
 
-from .models import Tickets
+from .models import Tickets,Notifications
 
 from django.db.models import Q
 
@@ -30,8 +30,15 @@ def home(request):
 def contact(request):
     return render(request,'landing/contact.html')
 
-def about(request):
-    return render(request,'landing/about.html')
+def notifications(request):
+
+    notifications = Notifications.objects.all().order_by('created_at')
+
+    context = {
+        'notifications' : notifications
+    }
+
+    return render(request,'landing/notifications.html' , context)
 
 # def emplist(request):
 #     employee = Employee.objects.all()

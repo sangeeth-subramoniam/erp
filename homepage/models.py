@@ -14,6 +14,17 @@ class Tickets(models.Model):
 
     def __str__(self):
         return self.query
-    
 
+
+
+class Notifications(models.Model):
+    employee = models.ForeignKey(Employee , on_delete = models.CASCADE , related_name="notification_employee")
+    notification_title = models.CharField(max_length=200)
+    notification_desc = models.CharField(max_length=200)
+    sender = models.ForeignKey(Employee , on_delete = models.CASCADE , related_name="notification_sender")
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return self.notification_title
 

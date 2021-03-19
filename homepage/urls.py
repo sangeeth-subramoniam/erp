@@ -14,7 +14,7 @@ urlpatterns = [
     path('tickets', views.tickets , name = "tickets"),
     path('tickets/status/<int:pk1>/<int:pk2>', views.ticket_status , name = "ticket_status"),
 
-    path('about', views.about , name = "about"),
+    path('notifications', views.notifications , name = "notifications"),
 
     # path('emplist', views.emplist , name = "emplist"),
     path('profile', views.profile , name = "profile"),
