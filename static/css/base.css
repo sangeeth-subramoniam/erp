@@ -1,3 +1,4 @@
+
 table{
     border: 2px solid black;
     width: 100%;
@@ -74,7 +75,7 @@ td{
 
 .chat-jumbotron-left {
     padding : 20px;
-    margin-left: 10%;
+    margin-left: 0px;
     max-width: 60%;
 }
 
@@ -86,7 +87,7 @@ td{
 
 .msg-div{
     width: 100%; 
-    height: 336px; 
+    height: 335px; 
     overflow: auto; 
     text-align:justify; 
     display: flex;

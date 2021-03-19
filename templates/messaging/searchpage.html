@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Message - Search Page
+
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <ol>
+            {% for employee in employees %}
+                <h3><li><a href=" {% url 'messaging:chat' pk=employee.emp_no %}">{{employee}}</h3></a></li>
+            {% endfor %}
+            <br>
+        </ol>
+    </div>
+    
+
+</div>
+
+
+{% endblock %}

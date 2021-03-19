@@ -13,7 +13,7 @@ Messaging-Chat
 <h1  style="text-align: center; padding:0px ;"> <u> Personal-Chat </u> </h1>
     <p style="text-align: center;  padding:0px ;">[ Welcome to Personal chat! Remember to guard your privacy and abide by our Company guidelines.]</p> <br>
 
-    <div class="container msg-div">
+    <div class="container msg-div" style="border: 1px solid black;">
     {% for items in msg_list %}
         
 
@@ -70,10 +70,22 @@ Messaging-Chat
             <label for="message"> Message : </label>
             <textarea class="form-control" name="message" rows="1"></textarea>
             
-            <label for="important"> Important : </label>
-            <input type="checkbox" name="important"><br>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="important"> Important : </label>
+                        <input type="checkbox" name="important">
+                    </div>
+                    <div class="col-sm-9">
+                        <p style="padding-left: 0px;">[ press CTRL+F to search for content within messages ]</p>
+                    </div>
+                </div>
+
+            </div>
+            
             
             <input type="submit" class="btn btn-primary" value="Send">
+            
         </div>
     </form>
 </div>

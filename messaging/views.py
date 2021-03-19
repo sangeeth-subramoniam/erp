@@ -9,6 +9,19 @@ from operator import attrgetter
 # Create your views here.
 def home(request):
 
+    if request.method == 'POST':
+
+        name = request.POST.get('employee_search')
+
+        employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+
+        context = {
+            'employees' : employees
+        }
+
+        return render(request,"messaging/searchpage.html", context)
+        
+
 
     # messages = Messaging.objects.all().order_by('-created_at')
     # my_messages = Messaging.objects.all().filter(reciever__user_profile__user__id = request.user.id).values('sender').distinct()
@@ -97,3 +110,15 @@ def chat(request,pk):
     }
 
     return render(request,'messaging/chat.html' , context)
+
+
+# def search(request,name):
+
+
+#     employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+
+#     context = {
+#         'employees' : employees
+#     }
+
+#     return render(request,"messaging/searchpage.html", context)
