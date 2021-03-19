@@ -20,19 +20,42 @@ Messaging-Chat
             
             {% if items.sender == curr_user_employee %}
 
-                <div class="jumbotron chat-jumbotron-right">
-                    <p> <u> {{items.sender}}  </u> </p>
-                    <p> {{items.message}} </p>
-                    <b> {{items.created_at}} </b>
-                </div>
+                {% if items.important == True %}
+                
+                    <div class="jumbotron chat-jumbotron-right" style= "background-color:#eed202;">
+                            <p> <u> {{items.sender}}  </u> </p>
+                            <p> {{items.message}} </p>
+                            <b> {{items.created_at}} </b>
+                    </div>
+
+                {% else %}
+                        
+                    <div class="jumbotron chat-jumbotron-right">
+                        <p> <u> {{items.sender}}  </u> </p>
+                        <p> {{items.message}} </p>
+                        <b> {{items.created_at}} </b>
+                    </div>
+                
+                {% endif %}
             
             {% else %}
 
-                <div class="jumbotron chat-jumbotron-left">
-                    <p> {{items.sender}} : </p>
-                    <p>{{items.message}}</p>
-                    <b>{{items.created_at}}</b>
-                </div>
+                {% if items.important == True %}
+
+                    <div class="jumbotron chat-jumbotron-left" style= "background-color:#eed202;" >
+                        <p> {{items.sender}} : </p>
+                        <p>{{items.message}}</p>
+                        <b>{{items.created_at}}</b>
+                    </div>
+                
+                {% else %}
+                    
+                    <div class="jumbotron chat-jumbotron-left">
+                        <p> {{items.sender}} : </p>
+                        <p>{{items.message}}</p>
+                        <b>{{items.created_at}}</b>
+                    </div>
+                {% endif %}
 
             {% endif %}
 
