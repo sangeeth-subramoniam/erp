@@ -102,3 +102,38 @@ td{
     position: relative;
 }
 
+
+.room-picture{
+
+    margin-left: 5%;
+    margin-right: 5%;
+    width : 90%;
+    height : 300px;
+    border-radius: 25px;
+
+}
+
+.room-picture-detail{
+
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    border-radius: 25px;
+    
+    
+
+}
+
+.jumbo-detail{
+    height:300px;
+}
+
+.room-picture-detail-reserve{
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+    border-radius: 25px;
+}
+
+
+

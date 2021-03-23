@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Room Details
+
+{% endblock %}
+
+{% block body %}
+    <br>
+    <H1 style="text-align: center; ">
+        Room - {{rooms.room_name}}
+    </H1>
+    <br><br>
+
+    <div class="container">
+        <img class="room-picture-detail" src="/media/{{rooms.room_image}}" alt="No preview">
+    </div>
+    <br>
+    <br> <br>
+
+<div class="container">
+
+    
+
+        <div class="col-md-12">
+
+            <div class="jumbotron">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Room Number : </b>
+                </div>
+
+                <div class="col-md-6">
+                    <b>{{rooms.room_no}} </b><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Room Name : </b> 
+                </div>
+
+                <div class="col-md-6">
+                    <b>{{rooms.room_name}}</b> <br>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Status : </b> 
+                </div>
+
+                <div class="col-md-6">
+                    <b>{{rooms.status}}</b> <br>
+                </div>
+            </div>      
+            
+            <div class="row">            
+                <div class="col-md-12">
+                    <b>Facilities :</b>
+                    <ol>
+                        {% for items in facilities %}
+                            <li>{{items}}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+
+
+        </div> 
+    </div>
+</div>
+
+{% endblock %}

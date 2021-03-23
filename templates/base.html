@@ -32,9 +32,8 @@
                     <li><a href="{% url 'attendance:attendance' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Attendance </a></li>
                     <li><a href="{% url 'dashboard:home' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Dashboard </a></li>
                     <li><a href="{% url 'messaging:home' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Messaging </a></li>
+                    <li><a href="{% url 'reservation:home' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> Reservation </a></li>
                 {% endif %}
-
-                <li><a href="{% url 'homepage:upcoming_modules' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> upcoming_modules</a></li>
 
             </ul>
             
@@ -54,6 +53,7 @@
     <div class="container base-container" style=" padding:0px ;">
         {% block body %}
         
+
 
         {% endblock %}
 

@@ -26,4 +26,5 @@ urlpatterns = [
     path('attendance/', include('attendance.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('message/', include('messaging.urls')),
+    path('reservation/', include('reservation.urls')),
 ]

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'dashboard',
     'django_forms_bootstrap',
     'messaging',
+    'reservation',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'TIME_ZONE': 'Asia/Tokyo',
     }
 }
 
