@@ -53,7 +53,7 @@ def room_reserve(request , pk):
         end = str(items.end_time.time())
         
 
-        timings = start + ' to ' + end + ' by ' + str(items.employee).capitalize()
+        timings = start + ' to ' + end + ' by ' + str(items.employee).upper()
 
         ls.append(timings)
         print('list is ', ls)
