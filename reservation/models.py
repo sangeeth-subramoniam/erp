@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from structure.models import Employee
 # Create your models here.
 class Rooms(models.Model):
@@ -40,3 +41,6 @@ class Booking(models.Model):
     def __str__(self):
         
         return (str(self.employee) + ' ' + str(self.start_time.time()) + ' to ' +  str(self.end_time.time()) )
+
+    def get_absolute_url(self):
+        return reverse('reservation:home')

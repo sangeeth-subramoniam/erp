@@ -9,6 +9,8 @@ import datetime
 from .models import Attendance_details
 from structure.models import Employee
 
+from django.contrib.auth.decorators import login_required
+
 now = datetime.datetime.now()
 
 year = now.year
@@ -23,6 +25,7 @@ num_days = monthrange(year,month_number)[1]
 
 # print(days_list)
 
+@login_required
 def attendance(request):
 
     if request.method == "POST":

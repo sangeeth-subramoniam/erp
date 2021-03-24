@@ -135,5 +135,12 @@ td{
     border-radius: 25px;
 }
 
+.reserve_button{
+    border: 2px solid black;
+    text-align: center;
+    width : 30%;
+    margin-left: 35%;
+}
+
 
 

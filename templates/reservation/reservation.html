@@ -49,7 +49,7 @@ Reservation
                 <div class="col-md-6">
                     <div class="jumbotron" style="padding-top: 5px;">
                         <h3 style="text-align: center;"> <u> Reserve Here </u> </h3> <br>
-                        </a><p>foo add a form here to book</p>
+                        <a href="{% url 'reservation:bookingcreate' class=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve </button> </a>
                     </div>
                 </div>
 
