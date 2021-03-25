@@ -6,6 +6,8 @@ from django.contrib import messages
 from structure.models import Employee
 
 from registration.models import user_profile
+
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
 

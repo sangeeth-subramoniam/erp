@@ -1,0 +1,3 @@
+auto reload every 10 seconds to load messages
+
+check for the algoritm to check time problem

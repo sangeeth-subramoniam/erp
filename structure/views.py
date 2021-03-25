@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Employee,DeptEmp
 from .forms import EmployeeUpdateForm, DeptEmpUpdateForm
 
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 

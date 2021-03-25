@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Schedule
+{% endblock %}
+
+{% block body %}
+
+            <h1>Schedule - {{bookings.employee}}<h1>
+
+            {%  for items in bookings   %}
+                
+                <div class="jumbotron">
+
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                <h3><b>Employee : </b></h3>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3>{{items.employee}}</h3> <br>
+                            </div>
+                        </div> 
+                    
+
+
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                <h3><b>Room : </b></h3>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3>{{items.room.room_name}}</h3> <br>
+                            </div>
+                        </div> 
+
+
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                <h3><b>Reservation Time : </b></h3>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3>{{items.start_time}}</h3> <br>
+                            </div>
+                        </div> 
+
+                        <div class="row">
+                            
+                            <div class="col-md-3">
+                                <h3><b>Created On : </b></h3>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3>{{items.created_on}}</h3> <br>
+                            </div>
+                        </div> 
+                </div>
+
+            <br><br><br>
+            
+            {% endfor %}
+
+{% endblock %}

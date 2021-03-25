@@ -6,6 +6,8 @@ from registration.models import user_profile
 from itertools import chain
 from operator import attrgetter
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def home(request):
 
@@ -112,6 +114,7 @@ def chat(request,pk):
         'curr_user' : curr_user ,
         'curr_user_employee' : curr_user_emp ,
         'msg_list' : result_list ,
+        'pk_no' : pk ,
     }
 
     return render(request,'messaging/chat.html' , context)

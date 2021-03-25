@@ -13,6 +13,9 @@ Reservation
         <H1 style="text-align: center; ">
             Reservation - {{room.room_name}}
         </H1>
+        <p style="text-align: center;">
+            [ Please note that reservation can be done only for the current and the next day ]
+        </p>
 
         <br><br>
 
@@ -49,7 +52,8 @@ Reservation
                 <div class="col-md-6">
                     <div class="jumbotron" style="padding-top: 5px;">
                         <h3 style="text-align: center;"> <u> Reserve Here </u> </h3> <br>
-                        <a href="{% url 'reservation:bookingcreate' class=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve </button> </a>
+                        {% comment %} <a href="{% url 'reservation:bookingcreate' class=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve </button> </a> {% endcomment %}
+                        <a href="{% url 'reservation:bookingcreate' pk=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve </button> </a>
                     </div>
                 </div>
 

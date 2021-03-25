@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from structure.models import Employee
+
+import datetime
+
+now = datetime.datetime.now()
+
+
 # Create your models here.
 class Rooms(models.Model):
 
@@ -29,6 +35,8 @@ class Booking(models.Model):
     employee = models.ForeignKey(Employee , on_delete = models.CASCADE)
 
     room = models.ForeignKey(Rooms, on_delete = models.CASCADE)
+
+    day = models.IntegerField(default=now.day)
 
     start_time = models.DateTimeField()
 

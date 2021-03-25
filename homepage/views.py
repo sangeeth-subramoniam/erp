@@ -10,6 +10,8 @@ from .forms import userprofile_updateForm
 
 from .models import Tickets,Notifications
 
+from django.contrib.auth.decorators import login_required
+
 from django.db.models import Q
 
 def get_or_none(model, **kwargs):
