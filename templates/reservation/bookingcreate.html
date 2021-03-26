@@ -32,12 +32,20 @@ Reseervation
                 <p style="color: red;"> {{ error }} </p>
         {% endif %}
 
-
+<script>
+function validate()
+{
+    var w = document.getElementById("start_hours");
+    if(w.value > 24 or w.value < 1 ) {
+        alert(" Bad Time Format - Start_Hours. Please change! Accepted Values ( 1 to 24 ) ");
+    }
+}
+</script>
 
         <h3>Please Reserve from the form below,</h3>
             <div class="jumbotron">
                 <!-- user the enctype attribute because we are uploading images  -->
-                <form enctype="multipart/form-data" method="POST">
+                <form enctype="multipart/form-data" onsubmit="return validate()" method="POST">
                     {% csrf_token %}
                     <div class="container sign-form">
                         
@@ -52,15 +60,15 @@ Reseervation
                         
                         <b><p> START TIME </p></b><br>
                         <label for="start_hours"> Start Hours : </label>
-                        <input type="text" class="form-control" name="start_hours" placeholder="EX: '13' for 1 PM" required><br> <br>
+                        <input type="text" id = "start_hours" class="form-control" name="start_hours" placeholder="EX: '13' for 1 PM" min = "1"  max = "24" onChange='validate()'required><br> <br>
                         <label for="start_minutes"> Start Minutes : </label>
-                        <input type="text" class="form-control" name="start_minutes" placeholder="EX: '30' for 30 Min" required><br> <br>
+                        <input type="text" class="form-control" name="start_minutes" placeholder="EX: '30' for 30 Min" min = "0"  max = "59" required><br> <br>
 
                         <b><p> END TIME </p></b>
                         <label for="end_hours"> End Hours : </label>
-                        <input type="text" class="form-control" name="end_hours" placeholder="EX: '13' for 1 PM" required><br> <br>
+                        <input type="text" class="form-control" name="end_hours" placeholder="EX: '13' for 1 PM" min = 01  max = 24 required><br> <br>
                         <label for="end_minutes"> End Minutes : </label>
-                        <input type="text" class="form-control" name="end_minutes" placeholder="EX: '30' for 30 Min" required><br> <br>
+                        <input type="text" class="form-control" name="end_minutes" placeholder="EX: '30' for 30 Min" min = 00  max = 60 required><br> <br>
 
 
                         <!-- {{ user_profileform.as_p }} -->
@@ -69,5 +77,8 @@ Reseervation
                 </form>
             </div>
         </div>
+
+
+
 
 {% endblock %}

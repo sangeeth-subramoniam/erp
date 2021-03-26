@@ -13,6 +13,8 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
+
 #to check for clashing reservations
 
 import datetime
@@ -102,7 +104,7 @@ def check_time(start_time , end_time, day_val , old_start_time , old_end_time , 
         return 3
 
     else:
-        if(  (updated_old_start_time <= updated_start_time <= updated_old_end_time) or (updated_old_start_time <= updated_end_time <= updated_old_end_time)  ):
+        if(  (updated_old_start_time < updated_start_time < updated_old_end_time) or (updated_old_start_time < updated_end_time < updated_old_end_time)  ):
             print("kurukula vandha kurukelumbula midhichiduven ")
             return 0
         
@@ -154,7 +156,7 @@ def room_reserve(request , pk):
 
     room = Rooms.objects.get(room_no = pk)
 
-    booking = Booking.objects.all().filter(room__room_no = pk).order_by('start_time')
+    booking = Booking.objects.all().filter(Q(day = now.day) | Q(day = now.day + 1) ,status = True ,  room__room_no = pk).order_by('start_time')
 
     ls = []
     for items in booking:
@@ -166,6 +168,9 @@ def room_reserve(request , pk):
             # print('llllllllllllllllllllllllllllllllllllllllllllllllllll now.day is same')
             date = str(datetime.datetime.today())[0:10]# .strftime('%y-%m-%d')
             temp_time = "TODAY"
+
+        
+
         else:
             date = str(datetime.datetime.today() + datetime.timedelta(days=1))[0:10]
             temp_time = "TOMORROW"
@@ -174,8 +179,12 @@ def room_reserve(request , pk):
         timings = start + ' to ' + end + ' by ' + str(items.employee).upper() + ' ' + temp_time + ' (' + date + ')'
 
         ls.append(timings)
-        
-        
+
+    booking_close = booking = Booking.objects.all().filter(day__lt = now.day)
+
+    for items in booking_close:
+        if(items.day == int(now.day) - 1) :
+            instance = Booking.objects.filter(id=items.id).update(status=False)
 
 
     context = {
@@ -249,40 +258,46 @@ def BookingCreate(request , pk):
         start_hours = int(request.POST.get('start_hours'))
         start_minutes = int(request.POST.get('start_minutes'))
 
-        start_time = datetime.datetime(now.year,now.month,day_val,start_hours,start_minutes,00)
-
         end_hours = int(request.POST.get('end_hours'))
         end_minutes = int(request.POST.get('end_minutes'))
 
-        end_time = datetime.datetime(now.year, now.month , day_val , end_hours , end_minutes , 00)
+        if( (start_hours > 24 or start_hours < 0) or (end_hours > 24 or end_hours < 0) or (start_minutes > 59 or start_minutes < 0) or (end_minutes > 59 or end_minutes < 0) ):
+            error = 'Bad Time Format. Please check the Time inputs '
+            return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+        else:
+            start_time = datetime.datetime(now.year,now.month,day_val,start_hours,start_minutes,00)
 
-
-        bookings = Booking.objects.all().filter(room = room)
-
-        if not bookings:
-            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa empty we can create')
-            Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
             
 
-        else:
-            print('bbbbbbbbbbbbbbbbbbbb not empty we have to check')
-            verdictls = []
-            for instances in bookings:
-                verdictls.append(check_time(start_time,end_time,day_val,instances.start_time,instances.end_time,instances.day))
-            if(0 in verdictls):
-                print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
-                error = 'Your Timing clashes with already booked schedule. Please change the time. Check the previous page for already booked timings'
-                return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+            end_time = datetime.datetime(now.year, now.month , day_val , end_hours , end_minutes , 00)
 
-            if(3 in verdictls):
-                print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
-                error = 'End time is earlier thatn the Start time. Please change the times to continue'
-                return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
 
+            bookings = Booking.objects.all().filter(room = room)
+
+            if not bookings:
+                print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa empty we can create')
+                Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
+                
 
             else:
-                Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
-                print('created aftercheckkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+                print('bbbbbbbbbbbbbbbbbbbb not empty we have to check')
+                verdictls = []
+                for instances in bookings:
+                    verdictls.append(check_time(start_time,end_time,day_val,instances.start_time,instances.end_time,instances.day))
+                if(0 in verdictls):
+                    print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
+                    error = 'Your Timing clashes with already booked schedule. Please change the time. Check the previous page for already booked timings'
+                    return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+
+                if(3 in verdictls):
+                    print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
+                    error = 'End time is earlier thatn the Start time. Please change the times to continue'
+                    return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+
+
+                else:
+                    Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
+                    print('created aftercheckkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
 
 
 
@@ -290,7 +305,7 @@ def BookingCreate(request , pk):
 
             
 
-        return redirect('reservation:home')
+            return redirect('reservation:home')
 
     else:
         employee = Employee.objects.get(user_profile__email = request.user.email)
@@ -305,9 +320,10 @@ def BookingCreate(request , pk):
 def schedule(request, pk):
 
     bookings = Booking.objects.all().filter(user__email = pk)
-
+    curr_empl = Employee.objects.get(user_profile__email = request.user.email)
     context = {
-        'bookings' : bookings
+        'bookings' : bookings , 
+        'curr_empl' : curr_empl ,
     }
 
     return render(request,'reservation/schedule.html', context)
