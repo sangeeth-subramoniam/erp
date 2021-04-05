@@ -23,7 +23,7 @@ class Employee(models.Model):
     user_profile = models.ForeignKey(user_profile, on_delete=models.CASCADE, null=True, blank=True )
     emp_no = models.IntegerField( primary_key=True)
     birth_date = models.DateField()
-    first_name = models.CharField(max_length=14)
+    first_name = models.CharField(max_length=14 , help_text="This is the grey text")
     last_name = models.CharField(max_length=16)
     gender = models.CharField(max_length=1)
     hire_date = models.DateField()
@@ -115,7 +115,12 @@ class attendance(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE, db_column='dept_no', verbose_name=('department'))
     date = models.DateField()
 
-    
+
+
+
+
+
+
 
 
 

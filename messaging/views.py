@@ -130,3 +130,4 @@ def chat(request,pk):
 #     }
 
 #     return render(request,"messaging/searchpage.html", context)
+

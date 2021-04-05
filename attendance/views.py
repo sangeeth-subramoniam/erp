@@ -27,7 +27,6 @@ num_days = monthrange(year,month_number)[1]
 
 @login_required
 def attendance(request):
-
     if request.method == "POST":
 
         curr_user = request.user
@@ -55,6 +54,7 @@ def attendance(request):
                 
                 val_upd = Attendance_details.objects.filter(employee__user_profile__email = curr_user.email).update(report=temp)
             
+            
 
 
 
@@ -67,6 +67,13 @@ def attendance(request):
     try:
         emp = Employee.objects.get(user_profile__email = curr_user.email)
         print(emp)
+
+        user_attendance = Attendance_details.objects.get(employee__user_profile__email =request.user.email)
+        # print('chekkkkkkking ', user_attendance.month , ' and ' ,calendar.month_name[datetime.datetime.today().month])
+        if(user_attendance.month != calendar.month_name[datetime.datetime.today().month]):
+            newls = " "
+            report_instance = Attendance_details.objects.filter(employee__user_profile__email =request.user.email).update(report = newls)
+            month_instance = Attendance_details.objects.filter(employee__user_profile__email =request.user.email).update(month = calendar.month_name[datetime.datetime.today().month])
 
         return render(request,'attendance/attendance_page.html',{'emp' : emp})
     except:
@@ -83,12 +90,19 @@ def check_attendance(request):
     attended = []
     unattended = []
     val = (user_attendance.report).split(',')
-    print(val)
+    # print('checking the val ' , val)
     tod = str(now.date())[-2:]
     for i in range(1,int(tod)+1):
+        # print('entering the checkerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr' , val, str(i) , int(tod)+1)
+        # print('string of i is ', str(i))
+        if(i < 10):
+            i = '0'+str(i)
+
         if(str(i) in val):
             attended.append(i)
+            # print('attended dates ' , i)
         else:
+            # print(str(i),' not in ', val, ' and type of i is ', type(str(i)) )
             unattended.append(i)
     return render(request , 'attendance/check_attendance.html' , {'attended' : attended , 'unattended' : unattended})
 

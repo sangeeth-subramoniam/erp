@@ -13,7 +13,7 @@ Messaging-Chat
 <h1  style="text-align: center; padding:0px ;"> <u> Personal-Chat </u> </h1>
     <p style="text-align: center;  padding:0px ;">[ Welcome to Personal chat! Remember to guard your privacy and abide by our Company guidelines.]</p> <br>
 
-    <div class="container msg-div" style="border: 1px solid black;">
+    <div class="container msg-div" style="border: 1px solid black; ">
     {% for items in msg_list %}
         
 
@@ -63,12 +63,12 @@ Messaging-Chat
 </div>
 
 <div class="container message-input-bottom" >
-    <form style="padding : 8px" method=POST>
+    <form id = "message_form" style="padding : 8px" method=POST>
         {% csrf_token %}
         <div class="form-group">
             
             <label for="message"> Message : </label>
-            <textarea class="form-control" name="message" rows="1"></textarea>
+            <textarea class="form-control" name="message" rows="1" id="message_text" onkeyup='saveValue(this);'> </textarea>
             
             <div class="col-sm-12">
                 <div class="row">
@@ -84,11 +84,45 @@ Messaging-Chat
             </div>
             
             
-            <input type="submit" class="btn btn-primary" value="Send">
+            <input type="submit" class="btn btn-primary" id="form-submit" value="Send">
             
         </div>
     </form>
 </div>
 
+<script type="text/javascript">
 
+        
+
+        document.getElementById("message_text").value = getSavedValue("message_text");    // set the value to this input
+        /* Here you can add more inputs to set value. if it's saved */
+
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";// You can change this to your defualt value. 
+            }
+            return localStorage.getItem(v);
+        }
+
+
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 7000);
+        
+
+        document.getElementById("form-submit").value = getSavedValue("message_text"); 
+
+        $('#message_form').submit(function () {
+            sendmessage_form();
+            window.localStorage.clear();
+        });
+</script>
 {% endblock %}
