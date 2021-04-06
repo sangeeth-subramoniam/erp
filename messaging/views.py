@@ -13,7 +13,7 @@ def home(request):
 
     if request.method == 'POST':
 
-        employee = Employee.objects.all(user_profile__email = request.user.email)
+        employee = Employee.objects.get(user_profile__email = request.user.email)
 
 
         name = request.POST.get('employee_search')
