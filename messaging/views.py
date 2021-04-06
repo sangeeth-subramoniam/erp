@@ -117,6 +117,7 @@ def chat(request,pk):
     # print('reciever msg ', curr_user_emp)
 
     # print(result_list)
+    #yesy
 
     context = {
         'curr_user' : curr_user ,
