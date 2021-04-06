@@ -13,28 +13,23 @@ def home(request):
 
     if request.method == 'POST':
 
-        try:
-            employee = Employee.objects.all(user_profile__email = request.user.email)
+        employee = Employee.objects.all(user_profile__email = request.user.email)
 
 
-            name = request.POST.get('employee_search')
-            
-            if(name == "all"):
-                employees = Employee.objects.all().exclude(user_profile__email = request.user.email)
+        name = request.POST.get('employee_search')
         
+        if(name == "all"):
+            employees = Employee.objects.all().exclude(user_profile__email = request.user.email)
+    
 
-            else:
-                employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+        else:
+            employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
-            context = {
-                'employees' : employees
-            }
+        context = {
+            'employees' : employees
+        }
 
-            return render(request,"messaging/searchpage.html", context)
-        
-        except:
-            error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
-            return render(request,'error/errorpage.html',{'error' : error})
+        return render(request,"messaging/searchpage.html", context)
                 
 
 
@@ -129,14 +124,14 @@ def chat(request,pk):
     return render(request,'messaging/chat.html' , context )
 
 
-def search(request,name):
+# def search(request,name):
 
 
-    employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+#     employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
-    context = {
-        'employees' : employees
-    }
+#     context = {
+#         'employees' : employees
+#     }
 
-    return render(request,"messaging/searchpage.html", context)
+#     return render(request,"messaging/searchpage.html", context)
 
