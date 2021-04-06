@@ -129,14 +129,14 @@ def chat(request,pk):
     return render(request,'messaging/chat.html' , context )
 
 
-# def search(request,name):
+def search(request,name):
 
 
-#     employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+    employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
-#     context = {
-#         'employees' : employees
-#     }
+    context = {
+        'employees' : employees
+    }
 
-#     return render(request,"messaging/searchpage.html", context)
+    return render(request,"messaging/searchpage.html", context)
 
