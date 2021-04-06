@@ -27,7 +27,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'eulb%0vr)-rafr67^d89@y93j81plb(nc3^0k!((sc%vm%6n96'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sangeeth-erp.herokuapp.com' , '127.0.0.1' ]
 
