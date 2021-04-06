@@ -125,7 +125,7 @@ def chat(request,pk):
         'pk_no' : pk ,
     }
 
-    return render(request,'messaging/chat.html' , context)
+    return render(request,'messaging/chat.html' , context )
 
 
 # def search(request,name):
