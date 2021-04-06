@@ -70,14 +70,14 @@ def chat(request,pk):
         
         current_user = request.user
         up = user_profile.objects.get(user = current_user)
-        print('up is ,' , up)
+        # print('up is ,' , up)
         emp = Employee.objects.get(user_profile__email = current_user.email)
-        print('emp is ', emp)
+        # print('emp is ', emp)
         message_content = request.POST['message']
-        print('message content is ', message_content)
+        # print('message content is ', message_content)
         # sender = current_user
         reciever = Employee.objects.get(emp_no = pk)
-        print(reciever)
+        # print(reciever)
         important = request.POST.get('important')
         if(important == "on"):
             important = True
@@ -89,7 +89,7 @@ def chat(request,pk):
         
 
         Messaging.objects.create(user = current_user, user_profile = up , employee = emp , message = message_content , sender = emp , reciever = reciever, important=important) 
-        print('Message object created !')
+        # print('Message object created !')
         
         return redirect('messaging:chat' , pk=reciever.emp_no)
 
@@ -113,10 +113,10 @@ def chat(request,pk):
     chain(sender_msg, reciever_msg),
     key=attrgetter('created_at') , reverse=True)
 
-    print('sender msg ', curr_user)
-    print('reciever msg ', curr_user_emp)
+    # print('sender msg ', curr_user)
+    # print('reciever msg ', curr_user_emp)
 
-    print(result_list)
+    # print(result_list)
 
     context = {
         'curr_user' : curr_user ,
