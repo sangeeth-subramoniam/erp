@@ -77,7 +77,7 @@ def attendance(request):
 
         return render(request,'attendance/attendance_page.html',{'emp' : emp})
     except:
-        error = "UnAppropriate User"
+        error = "Oops User error . Please try again later or contact Admim. Sorry for the inconvienience !!"
         return render(request,'error/errorpage.html',{'error' : error})
 
 

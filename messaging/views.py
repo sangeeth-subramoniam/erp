@@ -13,21 +13,29 @@ def home(request):
 
     if request.method == 'POST':
 
-        name = request.POST.get('employee_search')
+        try:
+            employee = Employee.objects.all(user_profile__email = request.user.email)
+
+
+            name = request.POST.get('employee_search')
+            
+            if(name == "all"):
+                employees = Employee.objects.all().exclude(user_profile__email = request.user.email)
         
-        if(name == "all"):
-            employees = Employee.objects.all().exclude(user_profile__email = request.user.email)
-    
 
-        else:
-            employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
+            else:
+                employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
-        context = {
-            'employees' : employees
-        }
+            context = {
+                'employees' : employees
+            }
 
-        return render(request,"messaging/searchpage.html", context)
+            return render(request,"messaging/searchpage.html", context)
         
+        except:
+            error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+            return render(request,'error/errorpage.html',{'error' : error})
+                
 
 
     # messages = Messaging.objects.all().order_by('-created_at')

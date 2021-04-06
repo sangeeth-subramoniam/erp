@@ -34,7 +34,7 @@ def contact(request):
 
 def notifications(request):
 
-    notifications = Notifications.objects.all().order_by('created_at')
+    notifications = Notifications.objects.all().order_by('-created_at')
 
     context = {
         'notifications' : notifications
@@ -52,11 +52,17 @@ def notifications(request):
 def profile(request):
     curr_user = request.user
     
-    employee = Employee.objects.get(user_profile__email = curr_user.email)
-    # dept = DeptEmp.objects.all().filter(employee__emp_no = pk)
-    dept = DeptEmp.objects.get(employee__user_profile__email = curr_user.email)
-    profilepicture = user_profile.objects.get(email=curr_user.email)
-    print('i am the profile pic ', profilepicture.profile_picture)
+    try:
+        employee = Employee.objects.get(user_profile__email = curr_user.email)
+        # dept = DeptEmp.objects.all().filter(employee__emp_no = pk)
+        dept = DeptEmp.objects.get(employee__user_profile__email = curr_user.email)
+        profilepicture = user_profile.objects.get(email=curr_user.email)
+        print('i am the profile pic ', profilepicture.profile_picture)
+    
+    except:
+        error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+        return render(request,'error/errorpage.html',{'error' : error})
+
     
 
     try:
@@ -96,18 +102,24 @@ def tickets(request):
 
         admin = Employee.objects.get(emp_no = 0)
 
-        employee_ticket = Employee.objects.get(user_profile__email = request.user.email)
+        try:
 
-        ticket = request.POST.get('ticket')
+            employee_ticket = Employee.objects.get(user_profile__email = request.user.email)
 
-        sendto = request.POST.get('reciever')
-        print(sendto)
-        sendto = admin
-        print('sendto 2' , sendto)
+            ticket = request.POST.get('ticket')
 
-        new_ticket = Tickets.objects.create(employee=employee_ticket, query=ticket , sender = employee_ticket , reciever= sendto)
+            sendto = request.POST.get('reciever')
+            print(sendto)
+            sendto = admin
+            print('sendto 2' , sendto)
 
-        return redirect('homepage:tickets')
+            new_ticket = Tickets.objects.create(employee=employee_ticket, query=ticket , sender = employee_ticket , reciever= sendto)
+
+            return redirect('homepage:tickets')
+    
+        except:
+            error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+            return render(request,'error/errorpage.html',{'error' : error})
     
     
     

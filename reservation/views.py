@@ -239,96 +239,111 @@ def room_reserve(request , pk):
 
 
 def BookingCreate(request , pk):
+    try:
+        if request.method == "POST":
 
-    if request.method == "POST":
+            now = datetime.datetime.now()
 
-        now = datetime.datetime.now()
+            user = request.user
+            employee = Employee.objects.get(user_profile__email = user.email)
+            room = Rooms.objects.get(room_no = pk)
 
-        user = request.user
-        employee = Employee.objects.get(user_profile__email = user.email)
-        room = Rooms.objects.get(room_no = pk)
-
-        today_or_tomorrow = request.POST.get("day")
-        if today_or_tomorrow == "today":
-            day_val = int(now.day)
-        else:
-            day_val = int(now.day + 1)
-        
-        
-        start_hours = int(request.POST.get('start_hours'))
-        start_minutes = int(request.POST.get('start_minutes'))
-
-        end_hours = int(request.POST.get('end_hours'))
-        end_minutes = int(request.POST.get('end_minutes'))
-
-        if( (start_hours > 24 or start_hours < 0) or (end_hours > 24 or end_hours < 0) or (start_minutes > 59 or start_minutes < 0) or (end_minutes > 59 or end_minutes < 0) ):
-            error = 'Bad Time Format. Please check the Time inputs '
-            return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
-        else:
-            start_time = datetime.datetime(now.year,now.month,day_val,start_hours,start_minutes,00)
-
+            today_or_tomorrow = request.POST.get("day")
+            if today_or_tomorrow == "today":
+                day_val = int(now.day)
+            else:
+                day_val = int(now.day + 1)
             
+            
+            start_hours = int(request.POST.get('start_hours'))
+            start_minutes = int(request.POST.get('start_minutes'))
 
-            end_time = datetime.datetime(now.year, now.month , day_val , end_hours , end_minutes , 00)
+            end_hours = int(request.POST.get('end_hours'))
+            end_minutes = int(request.POST.get('end_minutes'))
 
+            if( (start_hours > 24 or start_hours < 0) or (end_hours > 24 or end_hours < 0) or (start_minutes > 59 or start_minutes < 0) or (end_minutes > 59 or end_minutes < 0) ):
+                error = 'Bad Time Format. Please check the Time inputs '
+                return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+            else:
+                start_time = datetime.datetime(now.year,now.month,day_val,start_hours,start_minutes,00)
 
-            bookings = Booking.objects.all().filter(room = room)
-
-            if not bookings:
-                print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa empty we can create')
-                Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
                 
 
-            else:
-                print('bbbbbbbbbbbbbbbbbbbb not empty we have to check')
-                verdictls = []
-                for instances in bookings:
-                    verdictls.append(check_time(start_time,end_time,day_val,instances.start_time,instances.end_time,instances.day))
-                if(0 in verdictls):
-                    print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
-                    error = 'Your Timing clashes with already booked schedule. Please change the time. Check the previous page for already booked timings'
-                    return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+                end_time = datetime.datetime(now.year, now.month , day_val , end_hours , end_minutes , 00)
 
-                if(3 in verdictls):
-                    print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
-                    error = 'End time is earlier thatn the Start time. Please change the times to continue'
-                    return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
 
+                bookings = Booking.objects.all().filter(room = room)
+
+                if not bookings:
+                    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa empty we can create')
+                    Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
+                    
 
                 else:
-                    Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
-                    print('created aftercheckkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+                    print('bbbbbbbbbbbbbbbbbbbb not empty we have to check')
+                    verdictls = []
+                    for instances in bookings:
+                        verdictls.append(check_time(start_time,end_time,day_val,instances.start_time,instances.end_time,instances.day))
+                    if(0 in verdictls):
+                        print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
+                        error = 'Your Timing clashes with already booked schedule. Please change the time. Check the previous page for already booked timings'
+                        return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+
+                    if(3 in verdictls):
+                        print('fffffffffffffffffffffffffffffffffffailed ' , verdictls)
+                        error = 'End time is earlier thatn the Start time. Please change the times to continue'
+                        return render(request, "reservation/bookingcreate.html" , { 'error' : error , 'room' : room })
+
+
+                    else:
+                        Booking.objects.create(user = user, employee = employee ,day = day_val , room = room , start_time=  start_time , end_time = end_time , status = True)
+                        print('created aftercheckkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
 
 
 
 
 
-            
+                
 
-            return redirect('reservation:home')
+                return redirect('reservation:home')
+    except:
+            error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+            return render(request,'error/errorpage.html',{'error' : error})
 
     else:
-        employee = Employee.objects.get(user_profile__email = request.user.email)
 
-        room = Rooms.objects.get(room_no = pk)
+        try:
+                
+            employee = Employee.objects.get(user_profile__email = request.user.email)
 
-        return render(request,'reservation/bookingcreate.html' , { 'room' : room})
+            room = Rooms.objects.get(room_no = pk)
+
+            return render(request,'reservation/bookingcreate.html' , { 'room' : room})
+        
+        except:
+            error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+            return render(request,'error/errorpage.html',{'error' : error})
 
 
 
 
 def schedule(request, pk):
 
-    bookings = Booking.objects.all().filter(user__email = pk)
-    curr_empl = Employee.objects.get(user_profile__email = request.user.email)
-    context = {
-        'bookings' : bookings , 
-        'curr_empl' : curr_empl ,
-    }
+    try:
 
-    return render(request,'reservation/schedule.html', context)
+        bookings = Booking.objects.all().filter(user__email = pk)
+        curr_empl = Employee.objects.get(user_profile__email = request.user.email)
+        context = {
+            'bookings' : bookings , 
+            'curr_empl' : curr_empl ,
+        }
 
-    
+        return render(request,'reservation/schedule.html', context)
+
+    except:
+        error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+        return render(request,'error/errorpage.html',{'error' : error})
+
     
     
     

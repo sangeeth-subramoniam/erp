@@ -48,7 +48,11 @@ Dashboard
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning" style="background-color: #eee; color : #eed202;">Delete</button></a>
+                            {% if message.  == curr_user %}
+                                <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning" style="background-color: #eee; color : #eed202;">Delete</button></a>
+                            {% else %}
+                                <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning" style="background-color: #eee; color : #eed202;" disabled>Delete</button></a>
+                            {% endif %}
                         </div>
                         <div class="col-md-6">
                             <p>{{message.created_at}}</p>
@@ -65,7 +69,7 @@ Dashboard
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
-                            {% if message.user == curr_user %}
+                            {% if message.  == curr_user %}
                                 <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning">Delete</button></a>
                             {% else %}
                                 <a href=" {% url 'dashboard:delete' pk=message.id %} "><button class="btn btn-warning" disabled>Delete</button></a>

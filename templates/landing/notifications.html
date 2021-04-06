@@ -18,10 +18,22 @@ About
                     <u>{{notification.notification_title}}</u>
                     
                 </h2>
-
+                <br>
                 <p>
                     {{notification.notification_desc}}
                 </p>
+                <br>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>( {{notification.sender}} )</p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p> {{notification.created_at}} </p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

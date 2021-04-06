@@ -47,6 +47,7 @@ def signup(request):
     else:
         user_form = User_form()
         user_profileform = user_profile_form()
+        
 
     return render(request, "registration/signup.html", {'user_form': user_form , 'user_profileform' : user_profileform, 'registered' : registered  } )
 
