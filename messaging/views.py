@@ -26,7 +26,8 @@ def home(request):
             employees = Employee.objects.filter(first_name__icontains=name).exclude(user_profile__email = request.user.email)
 
         context = {
-            'employees' : employees
+            'employees' : employees, 
+            'term' : name , 
         }
 
         return render(request,"messaging/searchpage.html", context)
