@@ -11,17 +11,17 @@ Profile
 {% block body %}
 <h1 style="text-align: center; text-transform: capitalize; ">{{emp}}</h1>
 <br><br>
-{% if pp.profile_picture %}
+{% comment %} {% if pp.profile_picture %} {% endcomment %}
 <div class="jumbotron">
     {% comment %} <img class="profile-picture" src="media/{{pp.profile_picture}}" alt="Broken link">   "{% static '/rooms/board_room.jpg' %}" {% endcomment %}
     <img class="profile-picture" src="{% static '/dp/{{pp.user.username}}.jpg' %}" alt="Broken link">
 </div>
-{% else %}
+{% comment %} {% else %}
     <div class="jumbotron">
     <h5 style="text-align: center;">
         <b> No profile picture uploaded ! </b>
     </h5>
-</div>
+</div> {% endcomment %}
 {% endif %}
 <div>
     <a href=" {% url 'homepage:updateprofile' pk=pp.id %} "><button class = "btn btn-warning profilebutton">Edit</button></a>
