@@ -57,7 +57,7 @@ def profile(request):
         # dept = DeptEmp.objects.all().filter(employee__emp_no = pk)
         dept = DeptEmp.objects.get(employee__user_profile__email = curr_user.email)
         profilepicture = user_profile.objects.get(email=curr_user.email)
-        print('i am the profile pic ', profilepicture.profile_picture)
+        # print('i am the profile pic ', profilepicture.profile_picture)
     
     except:
         error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
