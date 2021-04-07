@@ -13,7 +13,8 @@ Profile
 <br><br>
 {% if pp.profile_picture %}
 <div class="jumbotron">
-    <img class="profile-picture" src="media/{{pp.profile_picture}}" alt="Broken link">
+    {% comment %} <img class="profile-picture" src="media/{{pp.profile_picture}}" alt="Broken link">   "{% static '/rooms/board_room.jpg' %}" {% endcomment %}
+    <img class="profile-picture" src="{% static '/dp/{{pp.user.username}}.jpg' %}" alt="Broken link">
 </div>
 {% else %}
     <div class="jumbotron">
