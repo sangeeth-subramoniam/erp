@@ -60,7 +60,7 @@ def profile(request):
         print('i am the profile pic ', profilepicture.profile_picture)
     
     except:
-        error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience !!"
+        error = "Your Employee credentials are not setup yet. Pleases contact Admin! Sorry for the inconvienience profile test !!"
         return render(request,'error/errorpage.html',{'error' : error})
 
     
