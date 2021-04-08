@@ -13,7 +13,11 @@ Profile
 <br><br>
 {% if pp.profile_picture %}
 <div class="jumbotron">
-    <img class="profile-picture" src=" {% static 'dp/test1.jpg' %}  " alt="Broken link">
+    {% if curr_user.username == "sangeeth"  %}
+        <img class="profile-picture" src=" {% static 'dp/sangeeth.jpg' %}  " alt="Broken link">
+    {% else %}
+        <img class="profile-picture" src=" {% static 'dp/soundarya.jpg' %}  " alt="Broken link">
+    {% endif %}
 </div>
 {% else %}
     <div class="jumbotron">

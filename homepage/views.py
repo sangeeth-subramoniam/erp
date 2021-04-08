@@ -106,7 +106,7 @@ def profile(request):
     # print('alaya manasa',dept2.department.dept_no)
     # for items in dept:
     #     print('sdkfjahskfj',dept.department)
-    return render(request,'landing/profile.html', {'emp' : employee, 'dept' : dept, 'title' : title , 'manager_status' : manager_status , 'pp':profilepicture , 'img' : '/dp/test1.jpg' })
+    return render(request,'landing/profile.html', {'emp' : employee, 'dept' : dept, 'title' : title , 'manager_status' : manager_status , 'pp':profilepicture , 'curr_user' : curr_user , 'img' : '/dp/test1.jpg' })
     # except:
     #     error = "UnAppropritae User"
     #     return render(request,'error/errorpage.html', {'error' : error})
