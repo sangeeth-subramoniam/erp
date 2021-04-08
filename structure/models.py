@@ -21,9 +21,9 @@ class Department(models.Model):
 
 class Employee(models.Model):
     user_profile = models.ForeignKey(user_profile, on_delete=models.CASCADE, null=True, blank=True )
-    emp_no = models.IntegerField( primary_key=True)
+    emp_no = models.IntegerField( primary_key=True )
     birth_date = models.DateField()
-    first_name = models.CharField(max_length=14 , help_text="This is the grey text")
+    first_name = models.CharField(max_length=14 , help_text="Enter your First Name")
     last_name = models.CharField(max_length=16)
     gender = models.CharField(max_length=1)
     hire_date = models.DateField()
