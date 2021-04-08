@@ -46,8 +46,8 @@ def notifications(request):
 
         notification_instance = Notifications.objects.create(employee=employee, notification_title=notification_title , notification_desc=notification_desc , sender=sender)
 
-        return render(homepage:notifications)
-        
+        return redirect('homepage : notifications')
+
     else:
         notifications = Notifications.objects.all().order_by('-created_at')
         accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)

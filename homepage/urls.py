@@ -5,8 +5,6 @@ from django.conf.urls.static import static
 
 from .views import updateprofile
 
-
-
 app_name = 'homepage'
 
 urlpatterns = [
