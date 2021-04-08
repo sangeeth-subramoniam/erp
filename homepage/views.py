@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q
 
-from structure.models import DeptEmp
+from structure.models import DeptEmp, Employee
 
 def get_or_none(model, **kwargs):
     try:
@@ -36,27 +36,40 @@ def contact(request):
 
 def notifications(request):
 
-    notifications = Notifications.objects.all().order_by('-created_at')
-    accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
-    print(accessed_by)
-    if(accessed_by.department.dept_name == 'Admin'):
-        admin = 1
+    if request.method == "POST" :
+        notification_title = request.POST.get('title')
+        notification_desc = request.POST.get('message')
+
+        employee = Employee.objects.get(user_profile__email = request.user.email)
+        sender = employee
+
+
+        notification_instance = Notifications.objects.create(employee=employee, notification_title=notification_title , notification_desc=notification_desc , sender=sender)
+
+        return render(homepage:notifications)
+        
     else:
-        admin = 0
-    print('admin value is ', admin)
-    context = {
-        'notifications' : notifications ,
-        'admin' : admin ,
-    }
+        notifications = Notifications.objects.all().order_by('-created_at')
+        accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
+        print(accessed_by)
+        if(accessed_by.department.dept_name == 'Admin'):
+            admin = 1
+        else:
+            admin = 0
+        print('admin value is ', admin)
+        context = {
+            'notifications' : notifications ,
+            'admin' : admin ,
+        }
 
-    return render(request,'landing/notifications.html' , context)
+        return render(request,'landing/notifications.html' , context)
 
-# def emplist(request):
-#     employee = Employee.objects.all()
-#     context = {'emplist':employee}
-#     # for items in employee:
-#     # print('wewrwer',employee.last_name)
-#     return render(request, 'landing/emplist.html',context)
+    # def emplist(request):
+    #     employee = Employee.objects.all()
+    #     context = {'emplist':employee}
+    #     # for items in employee:
+    #     # print('wewrwer',employee.last_name)
+    #     return render(request, 'landing/emplist.html',context)
 
 def profile(request):
     curr_user = request.user
