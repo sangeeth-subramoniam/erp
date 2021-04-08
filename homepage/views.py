@@ -38,12 +38,12 @@ def notifications(request):
 
     notifications = Notifications.objects.all().order_by('-created_at')
     accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
-    
-    if(accessed_by.department == 'Admin'):
+    print(accessed_by)
+    if(accessed_by.department.dept_name == 'Admin'):
         admin = 1
     else:
         admin = 0
-
+    print('admin value is ', admin)
     context = {
         'notifications' : notifications ,
         'admin' : admin ,
