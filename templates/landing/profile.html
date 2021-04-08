@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
-{% static "" as baseUrl %}
 
 {% block title %}
 
@@ -14,8 +13,7 @@ Profile
 <br><br>
 {% if pp.profile_picture %}
 <div class="jumbotron">
-
-    <img class="profile-picture" src="{% {{ baseUrl }}/dp/{{img}} %}" alt="Broken link">
+    <img class="profile-picture" src=" {% static 'dp/test1.jpg' %}  " alt="Broken link">
 </div>
 {% else %}
     <div class="jumbotron">
