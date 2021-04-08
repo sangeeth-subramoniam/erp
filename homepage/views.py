@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q
 
+from structure.models import DeptEmp
+
 def get_or_none(model, **kwargs):
     try:
         return model.objects.get(**kwargs)
@@ -35,9 +37,16 @@ def contact(request):
 def notifications(request):
 
     notifications = Notifications.objects.all().order_by('-created_at')
+    accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
+    
+    if(accessed_by.department == 'Admin'):
+        admin = 1
+    else:
+        admin = 0
 
     context = {
-        'notifications' : notifications
+        'notifications' : notifications ,
+        'admin' : admin ,
     }
 
     return render(request,'landing/notifications.html' , context)
