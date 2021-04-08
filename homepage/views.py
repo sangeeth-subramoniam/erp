@@ -46,7 +46,7 @@ def notifications(request):
 
         notification_instance = Notifications.objects.create(employee=employee, notification_title=notification_title , notification_desc=notification_desc , sender=sender)
 
-        return redirect('homepage : notifications')
+        return redirect('homepage:notifications')
 
     else:
         notifications = Notifications.objects.all().order_by('-created_at')
