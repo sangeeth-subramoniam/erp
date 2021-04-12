@@ -69,7 +69,7 @@ def signin(request):
                 return HttpResponseRedirect(reverse('homepage:home'))
             
             else:
-                return HttpResponse('account is NOT Active')
+                return render(request,'registration/signin.html' , context)
             
         else:
             print("someone tried to login and failed")
