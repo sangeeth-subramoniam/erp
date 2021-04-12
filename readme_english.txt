@@ -1,3 +1,7 @@
+If the website is live, you can cheit it out from the link below :
+
+https://sangeeth-erp.herokuapp.com/
+
 An application that automates all processes in a company. A system (CRM) that can manage attendance and instruct daily work contents.
 
 Language used: PYTHON 3.8.5
