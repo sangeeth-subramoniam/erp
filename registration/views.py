@@ -52,7 +52,7 @@ def signup(request):
     return render(request, "registration/signup.html", {'user_form': user_form , 'user_profileform' : user_profileform, 'registered' : registered  } )
 
 
-
+#sign in
 def signin(request):
     context = {}
     
