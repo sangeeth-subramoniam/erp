@@ -74,7 +74,7 @@ def signin(request):
         else:
             print("someone tried to login and failed")
             print("username: {} and password {}".format(username,password))
-            return HttpResponse("invalid login supplied")
+            return render(request,"registration/signin_fail_page.html")
     
     else:
         

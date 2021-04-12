@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Login Failed {% endblock %}
+
+{% block body%}
+<br><br>
+    <div class="container">
+        <div class="jumbotron">
+
+            Oops ! Invalid credentials. Please try again.
+            <br>
+        </div>
+        <br>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p style="text-align: right; padding-right : 0px; border-right : 0px"> <span style="color:blue"> <a href="{% url 'registration:signin' %}">Click here </a> </span> to retry or you will be redirected automatically in  </p>
+                    </div>
+
+                    <div class="col-md-7" style="border-left: 0px; padding-left : 0px ;>
+                        <div class="timer" onload="timer(180)">
+                            <div class="time">
+                                <strong><span id="time">redirecting in...</span></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+    <script>
+
+        var time = 10;
+        setInterval(function() {
+            var seconds = time % 60;
+            var minutes = (time - seconds) / 60;
+            if (seconds.toString().length == 1) {
+                seconds = "0" + seconds;
+            }
+            if (minutes.toString().length == 1) {
+                minutes = "0" + minutes;
+            }
+            document.getElementById("time").innerHTML = minutes + ":" + seconds;
+            time--;
+            if (time == -1) {
+                window.location.href = "{% url 'registration:signin' %}";
+            }
+        }, 1000);
+
+    </script>
+
+    
+{% endblock %}
