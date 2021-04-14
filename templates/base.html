@@ -30,11 +30,11 @@
 
 
                 {% if user.is_authenticated %}
-                    <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-child" aria-hidden="true"></i></i> Tickets</a></li>
-                    <li><a href="{% url 'attendance:attendance' %}"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Attendance </a></li>
+                    <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-child" aria-hidden="true"></i> Tickets</a></li>
+                    <li><a href="{% url 'attendance:attendance' %}"> <i class="fas fa-edit" aria-hidden="true"></i> Attendance </a></li>
                     <li><a href="{% url 'dashboard:home' %}"> <i class="fas fa-comments" aria-hidden="true"></i> Dashboard </a></li>
                     <li><a href="{% url 'messaging:home' %}"> <i class="far fa-comment-alt" aria-hidden="true"></i> Messaging </a></li>
-                    <li><a href="{% url 'reservation:home' %}"> <i class="fa fa-ticket" aria-hidden="true"></i> Reservation </a></li>
+                    <li><a href="{% url 'reservation:home' %}"> <i class="fas fa-ticket-alt" color = "white" aria-hidden="true"></i> Reservation </a></li>
                 {% endif %}
 
             </ul>
@@ -44,8 +44,8 @@
                 <li style="padding-right: 20px;"><a href="{% url 'registration:signout' %}"> <i class="fa fa-power-off" aria-hidden="true"></i> signout </a></li>
             {% else %}
                 <ul class = "nav navbar-nav navbar-right">
-                    <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signup</a></li>
-                    <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fa fa-envelope" aria-hidden="true"></i> Signin</a></li>
+                    <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fas fa-user-plus" aria-hidden="true"></i> Signup</a></li>
+                    <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Signin</a></li>
             {% endif %}
         </div>
     </nav>
