@@ -42,7 +42,11 @@ Contact
                 <div class="row">
                     <div class="col-md-8">
                         <h1> <li> {{ticket}} </li> </h1>
-                        <b>{{ticket.created_at}}</b><br><br>
+                        <b>{{ticket.created_at}}</b>
+                        {% if is_admin %}
+                        <b> Sender: {{ticket.sender}}</b>
+                        {% endif %}
+                        <br><br>
                     </div>
 
                     

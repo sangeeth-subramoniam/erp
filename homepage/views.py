@@ -150,11 +150,19 @@ def tickets(request):
     
     
     current_user = request.user
-    admin = Employee.objects.get(emp_no = 0)
-    ticket = Tickets.objects.all().filter(~Q(status=3)).filter(employee__user_profile__email = current_user.email).order_by('-created_at')
-    print(ticket)
+    is_admin = Employee.objects.get(user_profile__email = current_user.email)
+    if(is_admin.emp_no == 0):
+        admin = Employee.objects.get(emp_no = 0)
+        ticket = Tickets.objects.all().filter(~Q(status=3)).order_by('-created_at')
+        print(ticket)
 
-    return render(request,'landing/tickets.html', {'tickets' : ticket , 'curr_user' : current_user , 'admin':admin})
+        return render(request,'landing/tickets.html', {'tickets' : ticket , 'curr_user' : current_user , 'admin':admin , 'is_admin':1})
+    else:
+        admin = Employee.objects.get(emp_no = 0)
+        ticket = Tickets.objects.all().filter(~Q(status=3)).filter(employee__user_profile__email = current_user.email).order_by('-created_at')
+        print(ticket)
+
+        return render(request,'landing/tickets.html', {'tickets' : ticket , 'curr_user' : current_user , 'admin':admin})
 
 def ticket_status(request,pk1,pk2):
     tick = Tickets.objects.get(id = pk1)
