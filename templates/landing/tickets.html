@@ -45,6 +45,8 @@ Contact
                         <b>{{ticket.created_at}}</b>
                         {% if is_admin %}
                         <b> Sender: {{ticket.sender}}</b>
+                        {% else %}
+                        <b> Sender: Myself</b>
                         {% endif %}
                         <br><br>
                     </div>
