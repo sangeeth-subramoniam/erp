@@ -24,8 +24,13 @@
                 <!-- using dynamic urls .... don't forget to add app_name = 'homepage' etc to each of the urls.py -->
                 <li> <a href="/"> <i class="fa fa-home" aria-hidden="true"> </i>  Home</a> </li>
                 
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'homepage:notifications' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications</a></li>
                 
+                {% else %}
+                    <li><a class="btn-disabled" href='/' disabled="disabled" onclick="myFunction()"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications</a></li>
+                {% endif %}
+
 
 
 
@@ -60,6 +65,11 @@
 
     </div>
     
-    
+    <script>
+        function myFunction() {
+            alert("Please Login!");
+        }
+    </script>
+
 </body>
 </html>

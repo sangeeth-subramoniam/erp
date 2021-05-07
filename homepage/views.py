@@ -27,6 +27,7 @@ def get_or_none(model, **kwargs):
 def home(request):
     if request.user.is_authenticated:
         curruser = request.user
+        print('sent value is ' ,request.resolver_match.url_name)
         return render(request,'landing/homepage.html',{'curr_user' : curruser})
     else:
         return render(request,'landing/homepage.html')
@@ -49,20 +50,23 @@ def notifications(request):
         return redirect('homepage:notifications')
 
     else:
-        notifications = Notifications.objects.all().order_by('-created_at')
-        accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
-        print(accessed_by)
-        if(accessed_by.department.dept_name == 'Admin'):
-            admin = 1
-        else:
-            admin = 0
-        print('admin value is ', admin)
-        context = {
-            'notifications' : notifications ,
-            'admin' : admin ,
-        }
+        try:
+            notifications = Notifications.objects.all().order_by('-created_at')
+            accessed_by = DeptEmp.objects.get(employee__user_profile__email = request.user.email)
+            print(accessed_by)
+            if(accessed_by.department.dept_name == 'Admin'):
+                admin = 1
+            else:
+                admin = 0
+            print('admin value is ', admin)
+            context = {
+                'notifications' : notifications ,
+                'admin' : admin ,
+            }
 
-        return render(request,'landing/notifications.html' , context)
+            return render(request,'landing/notifications.html' , context)
+        except:
+            return render(request, 'error/errorpage.html')
 
     # def emplist(request):
     #     employee = Employee.objects.all()
