@@ -17,7 +17,10 @@ Room Details
     <br><br>
 
     <div class="container">
-        <img class="room-picture-detail" src="{% static '/rooms/board_room.jpg' %}" alt="No preview">
+        {% comment %} <img class="room-picture-detail" src="{% static '/rooms/board_room.jpg' %}" alt="No preview"> {% endcomment %}
+        {% with 'rooms/'|add:rooms.room_name|add:'.jpg' as image_static %}
+            <img class="room-picture-detail" src="{% static image_static %}" alt="No preview">
+        {% endwith %}
     </div>
     <br>
     <br> <br>

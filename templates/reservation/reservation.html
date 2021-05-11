@@ -20,7 +20,10 @@ Reservation
         <br><br>
 
         <div class="container">
-            <img class="room-picture-detail-reserve" src="{% static '/rooms/board_room.jpg' %}" alt="No preview">
+            {% comment %} <img class="room-picture-detail-reserve" src="{% static '/rooms/{{room.room_name}}.jpg' %}" alt="No preview"> {% endcomment %}
+            {% with 'rooms/'|add:room.room_name|add:'.jpg' as image_static %}
+                <img class="room-picture" src="{% static image_static %}" alt="No preview">
+            {% endwith %}
         </div>
         <br>
         <div class="container" style="text-align: center;">

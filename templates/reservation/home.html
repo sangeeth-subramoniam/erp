@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 {% load bootstrap_tags %}
 
 {% block title %}
@@ -31,13 +32,12 @@ Reservation
                     <div class="col-md-6" style = "margin-top : 20px;" >
                         <div class="jumbotron booking-room" style="padding-top: 5px;">
                             <h2 style="text-align: center;"><b>{{room.room_name}} </b> </h2>
-                            <br>
+                            <br>                            
+                            {% with 'rooms/'|add:room.room_name|add:'.jpg' as image_static %}
+                                <img class="room-picture" src="{% static image_static %}">
+                            {% endwith %}
                             
-                            <div class="container">
-                                <img class="room-picture" src="{% static '/rooms/board_room.jpg' %}"  onerror="if (this.src != 'error.jpg') this.src = "{% static '/rooms/board_room.jpg' %}";">
-                            </div>
-                            
-                            <br>
+                            <br><br><br>
 
                             <div class="col-md-12">
                                 <div class="row">
