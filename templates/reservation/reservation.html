@@ -32,7 +32,7 @@ Reservation
         <br>
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6" >
+                <div class="col-md-7" >
                     <div class="jumbotron" style="padding-top: 5px;">
                         <h3 style="text-align: center;"> <u> Reserved Timings(予約されたタイミング) </u> </h3>
                         <br>
@@ -52,9 +52,9 @@ Reservation
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="jumbotron" style="padding-top: 5px;">
-                        <h3 style="text-align: center;"> <u> Reserve Here　（以下に予約） </u> </h3> <br>
+                        <h3 style="text-align: center;"> <u> Reserve Here(以下に予約)</u> </h3> <br>
                         {% comment %} <a href="{% url 'reservation:bookingcreate' class=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve </button> </a> {% endcomment %}
                         <a href="{% url 'reservation:bookingcreate' pk=room.room_no %}"> <button class = "btn btn-default reserve_button"> Reserve(予約) </button> </a>
                     </div>
