@@ -13,7 +13,7 @@ Attendance
     <h1 style="text-align: center;"> <u> Attendance </u> </h1>
     <p style="text-align: center;">[ Mark Attendance below. For any date other than today raise a ticket to the admin with the list of days to be marked ]</p>
     <p style="text-align: center;">[ 以下に出席をマークしてください。 今日以外の日付については、マークする日のリストを記載したチケットを管理者に提出してください。 ]</p>
-    <a href="{% url 'homepage:tickets' %}"><button class="btn btn-warning" style="width: 20%; margin-left: 40%; margin-right: 40%;">Raise ticket to ADMIN!(チケットをアップする)</button></a>
+    <a href="{% url 'homepage:tickets' %}"><button class="btn btn-warning" style="width: 30%; margin-left: 35%; margin-right: 35%;">Raise ticket to ADMIN!(チケットをアップする)</button></a>
 
     <br><br>
 
@@ -22,10 +22,10 @@ Attendance
             <div class="row">
                 <div class="col-md-7">
                     Please mark your attendance below:<br>
-                    以下に出席をマークしてください　：
+                    (以下に出席をマークしてください)
                 </div>
-                <div class="col-md-3">
-                    <a href=" {% url 'attendance:check_attendance' %}" ><button>Check Attendance (出席を確認する)</button></a>
+                <div class="col-md-5">
+                    <a href=" {% url 'attendance:check_attendance' %}" ><button>Check Attendance <br>(出席を確認する)</button></a>
                 </div>
             </div>
         </div>
