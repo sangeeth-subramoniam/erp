@@ -34,12 +34,15 @@ Homepage
             <h1 style = "text-align : center;" >   Welcome to サン会社 </h1>
             
             <br><br>
-            <h2 style="text-align: center;"> 
-                アプリケーションをテストしたい場合は、<br><br>
-                ユーザー名 ： test1 <br>
-                パスワード ： test1 <br>
-            </h2>
-            <br><br>
+            {% if user.is_authenticated %}
+            {% else %}
+                <h2 style="text-align: center;"> 
+                    アプリケーションを使用したい場合は、以下の資格情報でログインしてください、<br><br>
+                    ユーザー名 ： test1 <br>
+                    パスワード ： test1 <br>
+                </h2>
+                <br><br>
+            {% endif %}
             <h4>
 
             '''
@@ -102,12 +105,15 @@ Homepage
 
                 '''
                 <br><br>
-                <h2 style="text-align: center;"> 
-                    If you would like to use the application , <br><br>
-                    Username: test1 <br>
-                    Password: test1 <br>
-                </h2>
-                <br><br>
+                {% if user.is_authenticated %}
+                {% else %}
+                    <h2 style="text-align: center;"> 
+                        If you would like to use the application , Login with the credentials below, <br><br>
+                        Username: test1 <br>
+                        Password: test1 <br>
+                    </h2>
+                    <br><br>
+                {% endif %}
                 
                 '''
                 Welcome! <br><br><br>
