@@ -17,6 +17,9 @@ Reservation
                     <H1 style="margin-left : 50%;">
                         Reservation Page
                     </H1>
+                    <p style = "text-align: center; margin-left : 32%;">[Reservation can be done for the current and the next day]</p>
+                    <p style="text-align: center;  padding:0px ; margin-left : 32%;">[当日と翌日の予約が可能です]</p> <br>
+
                 </div>
                 <div class="col-md-3">
                     <h1><a href=" {% url 'reservation:schedule' pk=request.user.email %} "> <button  class = "btn btn-lg btn-info "> Check my reservations(予約の確認) </button></a></h1>
