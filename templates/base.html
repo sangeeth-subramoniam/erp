@@ -22,35 +22,35 @@
             </div>
             <ul class="nav navbar-nav">
                 <!-- using dynamic urls .... don't forget to add app_name = 'homepage' etc to each of the urls.py -->
-                <li> <a href="/"> <i class="fa fa-home" aria-hidden="true"> </i>  Home</a> </li>
+                <li> <a href="/"> <i class="fa fa-home" aria-hidden="true"> </i>  Home<br>( ホーム )</a> </li>
                 
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'homepage:notifications' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications</a></li>
+                <li><a href="{% url 'homepage:notifications' %}"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications<br>( 通知 )</a></li>
                 
                 {% else %}
-                    <li><a class="btn-disabled" href='/' disabled="disabled" onclick="myFunction()"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications</a></li>
+                    <li><a class="btn-disabled" href='/' disabled="disabled" onclick="myFunction()"> <i class="fa fa-id-card" aria-hidden="true"></i> notifications<br>( 通知 )</a></li>
                 {% endif %}
 
 
 
 
                 {% if user.is_authenticated %}
-                    <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-child" aria-hidden="true"></i> Tickets</a></li>
-                    <li><a href="{% url 'attendance:attendance' %}"> <i class="fas fa-edit" aria-hidden="true"></i> Attendance </a></li>
-                    <li><a href="{% url 'dashboard:home' %}"> <i class="fas fa-comments" aria-hidden="true"></i> Dashboard </a></li>
-                    <li><a href="{% url 'messaging:home' %}"> <i class="far fa-comment-alt" aria-hidden="true"></i> Messaging </a></li>
-                    <li><a href="{% url 'reservation:home' %}"> <i class="fas fa-ticket-alt" color = "white" aria-hidden="true"></i> Reservation </a></li>
+                    <li><a href=" {% url 'homepage:tickets' %}"> <i class="fa fa-child" aria-hidden="true"></i> Tickets<br>( チケット )</a></li>
+                    <li><a href="{% url 'attendance:attendance' %}"> <i class="fas fa-edit" aria-hidden="true"></i> Attendance<br>( 出席 ) </a></li>
+                    <li><a href="{% url 'dashboard:home' %}"> <i class="fas fa-comments" aria-hidden="true"></i> Dashboard<br>( ダッシュボード ) </a></li>
+                    <li><a href="{% url 'messaging:home' %}"> <i class="far fa-comment-alt" aria-hidden="true"></i> Messaging<br>( メッセージング ) </a></li>
+                    <li><a href="{% url 'reservation:home' %}"> <i class="fas fa-ticket-alt" color = "white" aria-hidden="true"></i> Reservation<br>( 予約 ) </a></li>
                 {% endif %}
 
             </ul>
             {% if user.is_authenticated %}
             <ul class = "nav navbar-nav navbar-right">
                 <li><a href=" {% url 'homepage:profile' %}"> <i class="fas fa-user" aria-hidden="true"></i> Welcome {{user.username}} </a></li>
-                <li style="padding-right: 20px;"><a href="{% url 'registration:signout' %}"> <i class="fa fa-power-off" aria-hidden="true"></i> signout </a></li>
+                <li style="padding-right: 20px;"><a href="{% url 'registration:signout' %}"> <i class="fa fa-power-off" aria-hidden="true"></i> signout<br>( ログアウト ) </a></li>
             {% else %}
                 <ul class = "nav navbar-nav navbar-right">
-                    <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fas fa-user-plus" aria-hidden="true"></i> Signup</a></li>
-                    <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Signin</a></li>
+                    <li style="padding-right: 20px;"><a href="{% url 'registration:signup' %}"> <i class="fas fa-user-plus" aria-hidden="true"></i> Signup<br>( 新規登録 )</a></li>
+                    <li style="padding-right: 20px;"><a href="{% url 'registration:signin' %}"> <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Signin<br>( ログイン )</a></li>
             {% endif %}
         </div>
     </nav>
