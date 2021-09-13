@@ -15,7 +15,7 @@ Messaging
     <p style="text-align: center;  padding:0px ;">[ チャットへようこそ！ プライバシーを守り、会社のガイドラインを遵守することを忘れないでください。]</p> <br>
 
     <div class="container row" >
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h2>My Messages :</h2>
         </div>
 
@@ -23,9 +23,8 @@ Messaging
             <form method = "POST"> {% csrf_token %}<h2><input type="text" name="employee_search" placeholder="Seach for Employee" required> 
         </div>
 
-        <div class="col-md-1">
-
-            <h2><input class="btn btn-default" type="submit" placeholder="Submit"></h2> </form>
+        <div class="col-md-2">
+            <h2><input style="margin-left : 5px" class="btn btn-default" type="submit" placeholder="Submit"></h2> </form>
         </div>
 
         <div class="col-md-3">

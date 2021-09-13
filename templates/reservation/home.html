@@ -13,12 +13,12 @@ Reservation
 {% block body %}
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-9">
                     <H1 style="margin-left : 50%;">
                         Reservation Page
                     </H1>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <h1><a href=" {% url 'reservation:schedule' pk=request.user.email %} "> <button  class = "btn btn-lg btn-info "> Check my reservations(予約の確認) </button></a></h1>
                 </div>
             </div>
