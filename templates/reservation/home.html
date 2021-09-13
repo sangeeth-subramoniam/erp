@@ -19,7 +19,7 @@ Reservation
                     </H1>
                 </div>
                 <div class="col-md-2">
-                    <h1><a href=" {% url 'reservation:schedule' pk=request.user.email %} "> <button  class = "btn btn-lg btn-info "> Check my reservations </button></a></h1>
+                    <h1><a href=" {% url 'reservation:schedule' pk=request.user.email %} "> <button  class = "btn btn-lg btn-info "> Check my reservations(予約の確認) </button></a></h1>
                 </div>
             </div>
         </div>
@@ -42,11 +42,11 @@ Reservation
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6" style="text-align: center;">
-                                        <a href=" {% url 'reservation:room_details' pk=room.room_no %} "> <button class = "btn btn-info">View Details</button></a>
+                                        <a href=" {% url 'reservation:room_details' pk=room.room_no %} "> <button class = "btn btn-info">View Details(詳細を見る</button></a>
                                     </div>
 
                                     <div class="col-md-6" style="text-align: center;">
-                                        <a href="{% url 'reservation:room_reserve' pk=room.room_no %}"> <button class = "btn btn-info">Reserve this Room</button></a>
+                                        <a href="{% url 'reservation:room_reserve' pk=room.room_no %}"> <button class = "btn btn-info">Reserve this Room(予約)</button></a>
                                     </div>
 
 

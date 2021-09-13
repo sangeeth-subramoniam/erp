@@ -14,6 +14,7 @@ Check Attendance
 
 <div class="container">
     <h3 style = "text-align: center;">Your One month history of attendace records , </h3>
+    <h3 style = "text-align: center;">出席記録の1か月の履歴、 , </h3>
 </div>
 <br><br>
 
@@ -21,7 +22,7 @@ Check Attendance
     <div class="row">
         <div class="col-md-6">
             <div class="jumbotron attendance-history attendance-history-attended">
-                <u><h2 style="color: black;">Attended : </h2></u>
+                <u><h2 style="color: black;">Attended(出席した) : </h2></u>
                 <br>
                 {% for items in attended %}
                     <button class = "btn btn-default attendance-history-buttons attendance-history-attended"> {{items}} </button>
@@ -30,7 +31,7 @@ Check Attendance
         </div>
         <div class="col-md-6" >
             <div class="jumbotron attendance-history attendance-history-unattended ">
-                <u><h2 style="color: black;">Un-Attended : </h2></u>
+                <u><h2 style="color: black;">Un-Attended(休日) : </h2></u>
                 <br>
                 {% for items in unattended %}
                     <button class= "attendance-history-buttons btn btn-default attendance-history-unattended"> {{items}} </button>

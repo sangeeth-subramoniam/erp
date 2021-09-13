@@ -54,17 +54,17 @@ function validate()
 
                         <b><p>Please Select the date of reservation :</p></b>
                         <input type="radio" id="today" name="day" value="today" required>
-                        <label for="today"> TODAY</label><br>
+                        <label for="today"> TODAY(今日)</label><br>
                         <input type="radio" id="tomorrow" name="day" value="tomorrow">
-                        <label for="tomorrow"> TOMORROW</label><br><br>
+                        <label for="tomorrow"> TOMORROW(明日) </label><br><br>
                         
-                        <b><p> START TIME </p></b><br>
+                        <b><p> START TIME(始まる時間) </p></b><br>
                         <label for="start_hours"> Start Hours : </label>
                         <input type="text" id = "start_hours" class="form-control" name="start_hours" placeholder="EX: '13' for 1 PM" min = "1"  max = "24" onChange='validate()'required><br> <br>
                         <label for="start_minutes"> Start Minutes : </label>
                         <input type="text" class="form-control" name="start_minutes" placeholder="EX: '30' for 30 Min" min = "0"  max = "59" required><br> <br>
 
-                        <b><p> END TIME </p></b>
+                        <b><p> END TIME(終了時間) </p></b>
                         <label for="end_hours"> End Hours : </label>
                         <input type="text" class="form-control" name="end_hours" placeholder="EX: '13' for 1 PM" min = 01  max = 24 required><br> <br>
                         <label for="end_minutes"> End Minutes : </label>
@@ -72,7 +72,7 @@ function validate()
 
 
                         <!-- {{ user_profileform.as_p }} -->
-                        <input type="submit" class = “btn btn-default” name="submit" value="submit">
+                        <input type="submit" class = “btn btn-default” name="submit" value="Reserve(予約)">
                     </div>
                 </form>
             </div>
