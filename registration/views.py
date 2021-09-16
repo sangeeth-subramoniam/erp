@@ -1,17 +1,36 @@
 from django.shortcuts import render
 from .forms import User_form , user_profile_form
 
+from datetime import datetime
+
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import user_profile
+from structure.models import logs
 
 from datetime import datetime
 
 
 from django.contrib.auth.decorators import login_required
+
+
+
+#geting client ip address
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    print('xforw is ', x_forwarded_for)
+    if x_forwarded_for:
+        #ip = x_forwarded_for.split(',')[-1]
+        ip = str(x_forwarded_for)
+        print('xforward')
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+        print('remote addr')
+    return ip
 
 
 
@@ -65,9 +84,13 @@ def signin(request):
 
         if user:
             if user.is_active:
+                getip = get_client_ip(request)
+                print('the ip used is ', getip)
+                user_log = logs(logger = username , start_time = datetime.now() , ip = getip, location = 'Japan' )
+                user_log.save()
                 login(request,user)
                 return HttpResponseRedirect(reverse('homepage:home'))
-            
+
             else:
                 return render(request,'registration/signin.html' , context)
             
